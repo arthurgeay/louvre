@@ -1,3 +1,7 @@
+a_studio_core:
+    resource: "@AStudioCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
 a_studio_booking:
     resource: "@AStudioBookingBundle/Resources/config/routing.yml"
     prefix:   /order
