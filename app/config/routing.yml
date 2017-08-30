@@ -1,5 +1,5 @@
 a_studio_booking:
     resource: "@AStudioBookingBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /order
 
 
