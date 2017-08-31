@@ -3,6 +3,7 @@
 namespace AStudio\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Order
@@ -25,6 +26,11 @@ class Order
      * @var int
      *
      * @ORM\Column(name="nb_ticket", type="integer")
+     * @Assert\Range(
+     * min = 1,
+     * minMessage = "Le nombre de billet doit être supérieur ou égal à {limit}",
+     * invalidMessage = "{{ value }} n'est pas un nombre."
+     * )
      */
     private $nbTicket;
 
@@ -32,6 +38,7 @@ class Order
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ ne doit pas être vide")
      */
     private $name;
 
@@ -39,6 +46,10 @@ class Order
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255)
+     * @Assert\Email(
+     * message = "L'email {{ value }} n'est pas une adresse email valide",
+     * checkMX = true
+     * )
      */
     private $mail;
 
