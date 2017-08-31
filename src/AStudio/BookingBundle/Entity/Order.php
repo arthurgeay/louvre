@@ -24,9 +24,9 @@ class Order
     /**
      * @var int
      *
-     * @ORM\Column(name="id_ticket", type="integer")
+     * @ORM\Column(name="nb_ticket", type="integer")
      */
-    private $idTicket;
+    private $nbTicket;
 
     /**
      * @var string
@@ -54,27 +54,27 @@ class Order
     }
 
     /**
-     * Set idTicket
+     * Set nbTicket
      *
-     * @param integer $idTicket
+     * @param integer $nbTicket
      *
      * @return a_Order
      */
-    public function setIdTicket($idTicket)
+    public function setNbTicket($nbTicket)
     {
-        $this->idTicket = $idTicket;
+        $this->nbTicket = $nbTicket;
 
         return $this;
     }
 
     /**
-     * Get idTicket
+     * Get nbTicket
      *
      * @return int
      */
-    public function getIdTicket()
+    public function getNbTicket()
     {
-        return $this->idTicket;
+        return $this->nbTicket;
     }
 
     /**

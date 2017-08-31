@@ -55,6 +55,12 @@ class Ticket
      * @ORM\Column(name="reducedprice", type="boolean")
      */
     private $reducedprice;
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="AStudio\BookingBundle\Entity\Order", cascade={"persist"})
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $order;
 
 
     /**
@@ -186,5 +192,28 @@ class Ticket
     {
         return $this->reducedprice;
     }
-}
 
+    /**
+     * Set order
+     *
+     * @param \AStudio\BookingBundle\Entity\Order $order
+     *
+     * @return Ticket
+     */
+    public function setOrder(\AStudio\BookingBundle\Entity\Order $order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return \AStudio\BookingBundle\Entity\Order
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+}
