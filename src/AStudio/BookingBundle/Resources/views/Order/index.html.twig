@@ -28,7 +28,7 @@
         </div>
       </div>
       
-      <div class="form-group bootstrap-iso">
+      <div class="form-group">
         {{ form_label(form.dateVisit, "Date de la visite", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 
         {# Affichage des erreurs pour ce champ précis. #}
@@ -36,7 +36,7 @@
 
         <div class="col-sm-5">
           {# Génération de l'input. #}
-          {{ form_widget(form.dateVisit, {'attr': {'class': 'datepicker'}}) }}
+          {{ form_widget(form.dateVisit) }}
         </div>
       
       </div>
@@ -90,11 +90,15 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.fr.min.js"></script>
     <script>
         jQuery(document).ready(function() {
             $('.js-datepicker').datepicker({
-            format: 'yyyy-mm-dd'
-        });
+                language: "fr",
+                autoclose: true,
+                todayHighlight: true,
+                daysOfWeekDisabled: "0,2"
+            });
         });
     </script>
 {% endblock %}

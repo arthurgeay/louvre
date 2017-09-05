@@ -21,7 +21,7 @@ class OrderType extends AbstractType
         $builder->add('nbTicket', IntegerType::class)
                 ->add('dateVisit', DateType::class, array(
                     'widget' => 'single_text',
-                    'attr' => ['class' => 'js-datepicker'],
+                    'attr' => ['class' => 'js-datepicker form-control'],
                     'html5' => false))
                 ->add('type', ChoiceType::class, array(
                 'choices' => array(
