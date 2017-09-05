@@ -21,6 +21,7 @@ class OrderController extends Controller
             $session->set('nameOrder', $order->getName());
             $session->set('mailOrder', $order->getMail());
             $session->set('typeTicket', $order->getType());
+            $session->set('date', $order->getDateVisit());
             
             return $this->redirectToRoute('a_studio_core_homepage');
         }
