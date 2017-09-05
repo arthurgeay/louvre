@@ -14,6 +14,8 @@ class OrderController extends Controller
         $order = new Order();
         $form = $this->get('form.factory')->create(OrderType::class, $order);
         
+        // PENSER A LA CONTRAINTE DES 1000 billets sur le champ date
+        
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             $session = $this->get('session');
@@ -25,6 +27,7 @@ class OrderController extends Controller
             
             return $this->redirectToRoute('a_studio_core_homepage');
         }
+        
         return $this->render('AStudioBookingBundle:Order:index.html.twig', array('form' => $form->createView()));
     }
     

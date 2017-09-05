@@ -4,6 +4,7 @@ namespace AStudio\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Order
@@ -46,6 +47,7 @@ class Order
     * @var \DateTime
     *
     * @ORM\Column(name="dateOfVisit", type="datetime")
+    * @Assert\Date(message = "La date n'est pas valide.")
     */
     private $dateVisit;
 
@@ -198,4 +200,134 @@ class Order
     {
         return $this->dateVisit;
     }
+    
+    /**
+    * @Assert\Callback
+    */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        $sundaytuesday = $this->isSundayOrTuesday($this->getDateVisit());
+        $isPastDays = $this->isPastDays($this->getDateVisit());
+        $isAfter2Pm = $this->isAfter2Pm($this->getDateVisit(), $this->getType());
+        $isClosed = $this->isClosed($this->getDateVisit());
+        
+        if($sundaytuesday == true)
+        {
+            $context->buildViolation('Le musée est fermé le dimanche et le mardi.')
+                ->atPath('dateOfVisit')
+                ->addViolation();
+        }
+        
+        if($isPastDays == true) {
+            $context->buildViolation('Vous ne pouvez pas réservez pour un jour passé')
+                ->atPath('dateOfVisit')
+                ->addViolation();
+        }
+        
+        if($isAfter2Pm == true)
+        {
+            $context->buildViolation('Vous ne pouvez pas réserver de billet journée après 14h pour ce jour')
+                ->atPath('dateOfVisit')
+                ->addViolation();
+        }
+        
+       if($isClosed = true)
+       {
+           $context->buildViolation('Le musée est fermé pendant les jours fériés.')
+                ->atPath('dateOfVisit')
+                ->addViolation();
+       }
+        
+    }
+    
+    public function isSundayOrTuesday($date) 
+    {
+        $result = $date->format('Y-m-d');
+        $timestamp = strtotime($result);
+        $jour = date('w', $timestamp);
+        
+        // SI mardi ou dimanche
+        if($jour == 0 || $jour == 2) {
+            return true;
+        }
+    }
+    
+    public function isPastDays($date)
+    {   
+        $datef = $date->format('Y-m-d');
+        $dateAct = new \DateTime();
+        $dateformat = $dateAct->format("Y-m-d");
+        if($datef < $dateformat)
+        {
+            return true;
+        }
+    }
+    
+    
+    public function isAfter2Pm($date, $type)
+    {
+        $dateForm = $date->format('Y-m-d');
+        $dateAct = new \DateTime();
+        $dateActFormat = $dateAct->format('Y-m-d');
+        
+        if($dateActFormat == $dateForm && $type == 'journee')
+        {
+            $dateFormat = $dateAct->format('H:m:s');
+            $limit = new \DateTime('14:00:00');
+            $limitFormat = $limit->format('H:m:s');
+            
+            if($dateFormat >= $limitFormat)
+            {
+                return true;
+            }
+        }
+        
+    }
+        
+    public function isClosed($date) 
+    {
+        $result = $date->format('Y-m-d');
+        $timestamp = strtotime($result);
+        $notWorkable = $this->isNotWorkable($timestamp);
+        return $notWorkable;
+    }
+
+    
+    function isNotWorkable($date)
+	{
+ 
+	  	if ($date === null)
+	  	{
+	    	$date = time();
+	  	}
+ 
+	 	$date = strtotime(date('m/d/Y',$date));
+ 
+	 	$year = date('Y',$date);
+ 
+		$easterDate  = easter_date($year);
+		$easterDay   = date('j', $easterDate);
+		$easterMonth = date('n', $easterDate);
+		$easterYear   = date('Y', $easterDate);
+ 
+		$holidays = array(
+	    // Dates fixes
+	    mktime(0, 0, 0, 1,  1,  $year),  // 1er janvier
+	    mktime(0, 0, 0, 5,  1,  $year),  // Fête du travail
+	    mktime(0, 0, 0, 5,  8,  $year),  // Victoire des alliés
+	    mktime(0, 0, 0, 7,  14, $year),  // Fête nationale
+	    mktime(0, 0, 0, 8,  15, $year),  // Assomption
+	    mktime(0, 0, 0, 11, 1,  $year),  // Toussaint
+	    mktime(0, 0, 0, 11, 11, $year),  // Armistice
+	    mktime(0, 0, 0, 12, 25, $year),  // Noel
+ 
+	    // Dates variables
+	    mktime(0, 0, 0, $easterMonth, $easterDay + 1,  $easterYear),
+	    mktime(0, 0, 0, $easterMonth, $easterDay + 39, $easterYear),
+	    mktime(0, 0, 0, $easterMonth, $easterDay + 50, $easterYear),
+		);
+ 
+  	return in_array($date, $holidays);
+	}
+    
 }
