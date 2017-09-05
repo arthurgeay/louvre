@@ -38,16 +38,9 @@ class Ticket
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="birthdate", type="datetime")
      */
-    private $date;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="type", type="integer")
-     */
-    private $type;
+    private $birthdate;
 
     /**
      * @var bool
@@ -122,54 +115,6 @@ class Ticket
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Ticket
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     * Set type
-     *
-     * @param integer $type
-     *
-     * @return Ticket
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return int
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Set reducedprice
      *
      * @param boolean $reducedprice
@@ -215,5 +160,29 @@ class Ticket
     public function getOrder()
     {
         return $this->order;
+    }
+
+    /**
+     * Set birthdate
+     *
+     * @param \DateTime $birthdate
+     *
+     * @return Ticket
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthdate
+     *
+     * @return \DateTime
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
     }
 }

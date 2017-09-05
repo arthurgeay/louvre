@@ -33,6 +33,21 @@ class Order
      * )
      */
     private $nbTicket;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ ne doit pas être vide")
+     */
+    private $type;
+    
+    /**
+    * @var \DateTime
+    *
+    * @ORM\Column(name="dateOfVisit", type="datetime")
+    */
+    private $dateVisit;
 
     /**
      * @var string
@@ -135,5 +150,52 @@ class Order
     {
         return $this->mail;
     }
-}
 
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Order
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set dateVisit
+     *
+     * @param \DateTime $dateVisit
+     *
+     * @return Order
+     */
+    public function setDateVisit($dateVisit)
+    {
+        $this->dateVisit = $dateVisit;
+
+        return $this;
+    }
+
+    /**
+     * Get dateVisit
+     *
+     * @return \DateTime
+     */
+    public function getDateVisit()
+    {
+        return $this->dateVisit;
+    }
+}

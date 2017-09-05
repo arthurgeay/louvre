@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class OrderType extends AbstractType
 {
@@ -17,6 +19,14 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nbTicket', IntegerType::class)
+                ->add('dateVisit', DateType::class, array(
+                    'widget' => 'single_text',
+                    'attr' => ['class' => 'js-datepicker'],
+                    'html5' => false))
+                ->add('type', ChoiceType::class, array(
+                'choices' => array(
+                    'Journée' => 'journee',
+                    'Demi-journée' => 'demijour')))
                 ->add('name', TextType::class)
                 ->add('mail', EmailType::class);
     }

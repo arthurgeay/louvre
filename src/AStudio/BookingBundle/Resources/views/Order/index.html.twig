@@ -1,6 +1,11 @@
 {% extends "AStudioBookingBundle::layout.html.twig" %}
 
 {% block order_body %}
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css">
+    {% endblock %}
+    
     <h2>Réserver votre billet</h2>
     
     <div class="well">
@@ -20,6 +25,29 @@
         <div class="col-sm-1">
           {# Génération de l'input. #}
           {{ form_widget(form.nbTicket, {'attr': {'class': 'form-control', 'value': '1', 'min': '1'}}) }}
+        </div>
+      </div>
+      
+      <div class="form-group bootstrap-iso">
+        {{ form_label(form.dateVisit, "Date de la visite", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.dateVisit) }}
+
+        <div class="col-sm-5">
+          {# Génération de l'input. #}
+          {{ form_widget(form.dateVisit, {'attr': {'class': 'datepicker'}}) }}
+        </div>
+      
+      </div>
+        
+      <div class="form-group">
+        {{form_label(form.type, "Type de billet", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        
+        {{ form_errors(form.type) }}
+        
+        <div class="col-sm-5">
+            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
         </div>
       </div>
         
@@ -57,5 +85,16 @@
       {# Fermeture de la balise <form> du formulaire HTML #}
       {{ form_end(form) }}
     </div>
-    
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        });
+    </script>
 {% endblock %}
