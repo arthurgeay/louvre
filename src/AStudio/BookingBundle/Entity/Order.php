@@ -47,7 +47,9 @@ class Order
     * @var \DateTime
     *
     * @ORM\Column(name="dateOfVisit", type="datetime")
-    * @Assert\Date(message = "La date n'est pas valide.")
+    * @Assert\DateTime(message = "La date n'est pas valide.")
+    * @Assert\NotBlank(message = "Ce champ ne doit pas être vide")
+    * @Assert\NotNull(message = "Ce champ ne doit pas être nul")
     */
     private $dateVisit;
 
@@ -206,37 +208,63 @@ class Order
     */
     public function validate(ExecutionContextInterface $context, $payload)
     {
-        $sundaytuesday = $this->isSundayOrTuesday($this->getDateVisit());
-        $isPastDays = $this->isPastDays($this->getDateVisit());
-        $isAfter2Pm = $this->isAfter2Pm($this->getDateVisit(), $this->getType());
-        $isClosed = $this->isClosed($this->getDateVisit());
+        //$isNotDate = $this->isNotDate($this->getDateVisit());
+        //$sundaytuesday = $this->isSundayOrTuesday($this->getDateVisit());
+        //$isPastDays = $this->isPastDays($this->getDateVisit());
+        //$isAfter2Pm = $this->isAfter2Pm($this->getDateVisit(), $this->getType());
+        //$isClosed = $this->isClosed($this->getDateVisit());
         
-        if($sundaytuesday == true)
+        if($this->isNotDate($this->getDateVisit()) == false)
         {
+           $context->buildViolation('Veuillez rentrer une date valide.')
+                ->atPath('dateOfVisit')
+                ->addViolation();
+        }
+        else
+        {
+            if($this->isSundayOrTuesday($this->getDateVisit()) == true)
+            {
             $context->buildViolation('Le musée est fermé le dimanche et le mardi.')
                 ->atPath('dateOfVisit')
                 ->addViolation();
-        }
+            }
         
-        if($isPastDays == true) {
-            $context->buildViolation('Vous ne pouvez pas réservez pour un jour passé')
-                ->atPath('dateOfVisit')
-                ->addViolation();
-        }
+            if($this->isPastDays($this->getDateVisit()) == true) 
+            {
+                $context->buildViolation('Vous ne pouvez pas réserver pour un jour passé')
+                    ->atPath('dateOfVisit')
+                    ->addViolation();
+            }
         
-        if($isAfter2Pm == true)
+            if($this->isAfter2Pm($this->getDateVisit(), $this->getType()) == true)
+            {
+                $context->buildViolation('Vous ne pouvez pas réserver de billet journée après 14h pour ce jour')
+                    ->atPath('dateOfVisit')
+                    ->addViolation();
+            }
+        
+           if($this->isClosed($this->getDateVisit()) == true)
+           {
+               $context->buildViolation('Le musée est fermé pendant les jours fériés.')
+                    ->atPath('dateOfVisit')
+                    ->addViolation();
+           }
+        }
+            
+        
+    }
+    
+    public function isNotDate($date)
+    {
+        if($date == null)
         {
-            $context->buildViolation('Vous ne pouvez pas réserver de billet journée après 14h pour ce jour')
-                ->atPath('dateOfVisit')
-                ->addViolation();
+            return false;
+        }
+        else {
+            $result = $date->format('Y-m-d');
+            return (\DateTime::createFromFormat('Y-m-d', $result) !== true);
         }
         
-       if($isClosed = true)
-       {
-           $context->buildViolation('Le musée est fermé pendant les jours fériés.')
-                ->atPath('dateOfVisit')
-                ->addViolation();
-       }
         
     }
     

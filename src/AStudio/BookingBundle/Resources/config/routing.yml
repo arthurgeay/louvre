@@ -1,3 +1,7 @@
 a_studio_booking_homepage:
     path:     /
     defaults: { _controller: AStudioBookingBundle:Order:index }
+
+a_studio_booking_informations:
+    path:    /informations
+    defaults: {_controller: AStudioBookingBundle:Order:infos}
