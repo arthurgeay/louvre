@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AStudio\BookingBundle\Entity\Order;
 use AStudio\BookingBundle\Form\OrderType;
+use AStudio\BookingBundle\Entity\Ticket;
+use AStudio\BookingBundle\Form\TicketType;
 
 class OrderController extends Controller
 {
@@ -25,7 +27,7 @@ class OrderController extends Controller
             $session->set('typeTicket', $order->getType());
             $session->set('date', $order->getDateVisit());
             
-            return $this->redirectToRoute('a_studio_core_homepage');
+            return $this->redirectToRoute('a_studio_booking_informations');
         }
         
         return $this->render('AStudioBookingBundle:Order:index.html.twig', array('form' => $form->createView()));
