@@ -38,10 +38,16 @@ class OrderController extends Controller
         $ticket = new Ticket();
         $form = $this->get('form.factory')->create(TicketType::class, $ticket);
         
+        // Get numbers of ticket
+        $session = $this->get('session');
+        $nbTickets = $session->get('nbTicket');
+        
+        
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             
         }
-        return $this->render('AStudioBookingBundle:Order:infos.html.twig', array('form' => $form->createView()));
+        
+        return $this->render('AStudioBookingBundle:Order:infos.html.twig', array('form' => $form->createView(), 'nbTickets' => $nbTickets));
     }
 }
