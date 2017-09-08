@@ -3,6 +3,7 @@
 namespace AStudio\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Ticket
@@ -50,12 +51,11 @@ class Ticket
     private $reducedprice;
     
     /**
-    * @ORM\ManyToOne(targetEntity="AStudio\BookingBundle\Entity\Order", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="AStudio\BookingBundle\Entity\Order", cascade={"persist"}, inversedBy="tickets")
     * @ORM\JoinColumn(nullable=false)
     */
     private $order;
-
-
+    
     /**
      * Get id
      *

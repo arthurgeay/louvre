@@ -71,6 +71,12 @@ class Order
      * )
      */
     private $mail;
+    
+    /**
+    *
+    * @ORM\OneToMany(targetEntity="\AStudio\BookingBundle\Entity\Ticket", cascade={"persist"}, mappedBy="Order")
+    */
+    private $tickets;
 
 
     /**
@@ -358,4 +364,45 @@ class Order
   	return in_array($date, $holidays);
 	}
     
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ticket
+     *
+     * @param \AStudio\BookingBundle\Entity\Ticket $ticket
+     *
+     * @return Order
+     */
+    public function addTicket(\AStudio\BookingBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+
+        return $this;
+    }
+
+    /**
+     * Remove ticket
+     *
+     * @param \AStudio\BookingBundle\Entity\Ticket $ticket
+     */
+    public function removeTicket(\AStudio\BookingBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
 }

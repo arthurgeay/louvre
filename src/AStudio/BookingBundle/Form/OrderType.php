@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use AStudio\BookingBundle\Form\TicketType;
 
 class OrderType extends AbstractType
 {
@@ -28,7 +30,14 @@ class OrderType extends AbstractType
                     'Journée' => 'journee',
                     'Demi-journée' => 'demijour')))
                 ->add('name', TextType::class)
-                ->add('mail', EmailType::class);
+                ->add('mail', EmailType::class)
+                ->add('tickets', CollectionType::class, [
+                    'label' => 'bl',
+                    'entry_type' => TicketType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true
+                ])
+                ;
     }
     
     /**
