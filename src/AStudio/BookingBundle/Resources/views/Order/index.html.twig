@@ -90,14 +90,7 @@
          Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
          et tous les champs cachés (type « hidden »). #}
       {{ form_rest(form) }}
-        <ul class="test" data-prototype="{{ form_widget(form.tickets.vars.prototype)|e('html_attr') }}">
-        {% for ticketField in form.tickets %}
-            {{form_errors(ticketField) }}
-            {{ form_widget(ticketField) }}
-        </ul>
-        {% endfor %}
-    
-
+        
       {# Fermeture de la balise <form> du formulaire HTML #}
       {{ form_end(form) }}
     </div>
@@ -119,48 +112,7 @@
                 orientation: "auto"
             });
             
-            
         });
     </script>
-    <script>
-        var $collectionHolder;
 
-jQuery(document).ready(function() {
-    // Get the ul that holds the collection of tags
-    $collectionHolder = $('ul.test');
-
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
-    $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-        // add a new tag form (see next code block)
-        addTagForm($collectionHolder);
-    
-    function addTagForm($collectionHolder) {
-    // Get the data-prototype explained earlier
-    var prototype = $collectionHolder.data('prototype');
-
-    // get the new index
-    var index = $collectionHolder.data('index');
-
-    var newForm = prototype;
-    // You need this only if you didn't set 'label' => false in your tags field in TaskType
-    // Replace '__name__label__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    // newForm = newForm.replace(/__name__label__/g, index);
-
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    newForm = newForm.replace(/__name__/g, index);
-
-    // increase the index with one for the next item
-    $collectionHolder.data('index', index + 1);
-
-    // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<li></li>').append(newForm);
-    
-}
-
-});
-    </script>
 {% endblock %}

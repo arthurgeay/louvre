@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AStudio\BookingBundle\Entity\Order;
 use AStudio\BookingBundle\Form\OrderType;
 use AStudio\BookingBundle\Entity\Ticket;
-use AStudio\BookingBundle\Form\TicketType;
+use AStudio\BookingBundle\Form\TestType;
 
 class OrderController extends Controller
 {
@@ -35,8 +35,8 @@ class OrderController extends Controller
     
     public function infosAction(Request $request)
     {
-        $ticket = new Ticket();
-        $form = $this->get('form.factory')->create(TicketType::class, $ticket);
+        $order = new Order();
+        $form = $this->get('form.factory')->create(TestType::class, $order);
         
         // Get numbers of ticket
         $session = $this->get('session');
@@ -45,7 +45,8 @@ class OrderController extends Controller
         
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            
+            $session = $this->get('session');
+            $tickets = $session->set('tickets', $order->getTickets());
         }
         
         return $this->render('AStudioBookingBundle:Order:infos.html.twig', array('form' => $form->createView(), 'nbTickets' => $nbTickets));
