@@ -51,7 +51,7 @@ class Ticket
     private $reducedprice;
     
     /**
-    * @ORM\ManyToOne(targetEntity="AStudio\BookingBundle\Entity\Order", cascade={"persist"}, inversedBy="tickets")
+    * @ORM\ManyToOne(targetEntity="AStudio\BookingBundle\Entity\Order", cascade="persist", inversedBy="tickets")
     * @ORM\JoinColumn(nullable=false)
     */
     private $order;

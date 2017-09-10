@@ -74,7 +74,7 @@ class Order
     
     /**
     *
-    * @ORM\OneToMany(targetEntity="\AStudio\BookingBundle\Entity\Ticket", cascade={"persist"}, mappedBy="Order")
+    * @ORM\OneToMany(targetEntity="\AStudio\BookingBundle\Entity\Ticket", cascade="persist", mappedBy="order")
     */
     private $tickets;
 

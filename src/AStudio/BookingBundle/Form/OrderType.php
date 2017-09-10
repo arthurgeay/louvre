@@ -32,7 +32,7 @@ class OrderType extends AbstractType
                 ->add('name', TextType::class)
                 ->add('mail', EmailType::class)
                 ->add('tickets', CollectionType::class, [
-                    'label' => 'bl',
+                    'label' => 'Billets',
                     'entry_type' => TicketType::class,
                     'allow_add' => true,
                     'allow_delete' => true
