@@ -7,7 +7,7 @@
     {% endblock %}
     
     <h2>Informations</h2>
-        
+    
       <div class="well">
       {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
         
@@ -19,18 +19,12 @@
                  <li>{{ error.message }}</li>
             </div>
         {% endfor %}
-    
-
-      {# Génération manuelle et éclatée : #}
-      {{ form_row(form.tickets)}}
         
+        {{ form_row(form.tickets) }}
 
       {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
       <div class="form-group">
-          <div class="col-sm-10">
-            <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
-          </div>
-          
+        <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
       </div>
       
 
@@ -50,7 +44,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.fr.min.js"></script>
     <script>
         jQuery(document).ready(function() {
-            $('.input-group.date').datepicker({
+            $('.js-datepicker').datepicker({
                 language: "fr",
                 autoclose: true,
                 todayHighlight: true,
@@ -61,29 +55,26 @@
             });
         });
     </script>
-    
     <script>
-        $(document).ready(function() {
+      $(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $container = $('div#astudio_bookingbundle_order_tickets');
-
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;
+   
     var nb = Number('{{ nbTickets }}');
-
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     for (var i = 0; i < nb; i++)
     {
-        addCategory($container);    
+        addTicket($container);    
     }
       
             
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un 
             
     
-
     // La fonction qui ajoute un formulaire CategoryType
-    function addCategory($container) {
+    function addTicket($container) {
       // Dans le contenu de l'attribut « data-prototype », on remplace :
       // - le texte "__name__label__" qu'il contient par le label du champ
       // - le texte "__name__" qu'il contient par le numéro du champ
@@ -91,17 +82,13 @@
         .replace(/__name__label__/g, 'Billet n°' + (index+1))
         .replace(/__name__/g,        index)
       ;
-
       // On crée un objet jquery qui contient ce template
       var $prototype = $(template);
-
       // On ajoute le prototype modifié à la fin de la balise <div>
       $container.append($prototype);
-
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
     }
-
   });
     </script>
 {% endblock %}

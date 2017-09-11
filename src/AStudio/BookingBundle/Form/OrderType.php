@@ -30,7 +30,14 @@ class OrderType extends AbstractType
                     'Journée' => 'journee',
                     'Demi-journée' => 'demijour')))
                 ->add('name', TextType::class)
-                ->add('mail', EmailType::class);
+                ->add('mail', EmailType::class)
+                ->add('tickets', CollectionType::class, [
+                    'label' => false,
+                    'entry_type' => TicketType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true
+                ])
+                ;
     }
     
     /**
