@@ -3,7 +3,7 @@
 {% block order_body %}
     {% block stylesheets %}
         {{ parent() }}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css">
+        <link rel="stylesheet" href="{{ asset('datetimepicker/jquery.datetimepicker.css') }}">
     {% endblock %}
     
     <h2>Réserver votre billet</h2>
@@ -98,21 +98,19 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.fr.min.js"></script>
+
+    <script src="{{ asset('datetimepicker//build/jquery.datetimepicker.full.min.js') }}"></script>
     <script>
-        jQuery(document).ready(function() {
-            $('.input-group.date').datepicker({
-                language: "fr",
-                autoclose: true,
-                todayHighlight: true,
-                daysOfWeekDisabled: "0,2",
-                format: "yyyy-mm-dd",
-                startDate: "d",
-                orientation: "auto"
-            });
-            
+      $(function() {
+        $.datetimepicker.setLocale('fr');
+        $('.js-datepicker').datetimepicker({
+          disabledWeekDays: [0,2],
+          timepicker: false,
+          format: 'Y-m-d',
+          autoclose: true,
+          minDate: 0
         });
+      });
     </script>
 
 {% endblock %}

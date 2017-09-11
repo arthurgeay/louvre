@@ -25,7 +25,7 @@ class TicketType extends AbstractType
                 ->add('birthdate', DateType::class, array(
                     'label' => 'Date de naissance',
                     'widget' => 'single_text',
-                    'attr' => ['class' => 'col-sm-5 js-datepicker'],
+                    'attr' => ['class' => 'js-datepicker col-sm-5'],
                     'html5' => false))
                 ->add('reducedprice', CheckboxType::class, array(
                     'required' => false,
