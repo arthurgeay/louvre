@@ -25,19 +25,19 @@
       {# Génération manuelle et éclatée : #}
       <div class="form-group">
         {# Génération du label. #}
-        {{ form_label(form.nbTicket, "Nombre de billet", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_label(form.nbTicket, "Nombre de billet", {'label_attr': {'class': 'col-sm-2'}}) }}
 
         {# Affichage des erreurs pour ce champ précis. #}
         {{ form_errors(form.nbTicket) }}
 
         <div class="col-sm-1">
           {# Génération de l'input. #}
-          {{ form_widget(form.nbTicket, {'attr': {'class': 'form-control', 'value': '1', 'min': '1'}}) }}
+          {{ form_widget(form.nbTicket, {'attr': {'value': '1', 'min': '1'}}) }}
         </div>
       </div>
       
       <div class="form-group">
-        {{ form_label(form.dateVisit, "Date de la visite", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_label(form.dateVisit, "Date de la visite", {'label_attr': {'class': 'col-sm-2'}}) }}
 
         {# Affichage des erreurs pour ce champ précis. #}
         {{ form_errors(form.dateVisit) }}
@@ -51,29 +51,29 @@
       </div>
         
       <div class="form-group">
-        {{form_label(form.type, "Type de billet", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{form_label(form.type, "Type de billet", {'label_attr': {'class': 'col-sm-2'}}) }}
         
         {{ form_errors(form.type) }}
         
         <div class="col-sm-5">
-            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(form.type) }}
         </div>
       </div>
         
       <div class="form-group">
-        {{ form_label(form.name, "Prénom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_label(form.name, "Prénom", {'label_attr': {'class': 'col-sm-2'}}) }}
         {{ form_errors(form.name) }}
         <div class="col-sm-5">
-          {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+          {{ form_widget(form.name) }}
         </div>
       </div>    
         
       {# Idem pour un autre champ. #}
       <div class="form-group">
-        {{ form_label(form.mail, "Adresse mail", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_label(form.mail, "Adresse mail", {'label_attr': {'class': 'col-sm-2'}}) }}
         {{ form_errors(form.mail) }}
         <div class="col-sm-5">
-          {{ form_widget(form.mail, {'attr': {'class': 'form-control'}}) }}
+          {{ form_widget(form.mail) }}
         </div>
       </div>
 
@@ -99,7 +99,7 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('datetimepicker//build/jquery.datetimepicker.full.min.js') }}"></script>
+    <script src="{{ asset('datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
     <script>
       $(function() {
         $.datetimepicker.setLocale('fr');

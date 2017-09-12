@@ -22,7 +22,6 @@
         
         {{ form_row(form.tickets) }}
 
-      {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
       <div class="form-group">
         <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
       </div>
@@ -40,15 +39,14 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('datetimepicker//build/jquery.datetimepicker.full.min.js') }}"></script>
+    <script src="{{ asset('datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
     <script>
       $(function() {
         $.datetimepicker.setLocale('fr');
-        $('.js-datepicker').datetimepicker({
+        $('[name="astudio_bookingbundle_order[tickets][0][birthdate]"]').datetimepicker({
           timepicker: false,
           format: 'Y-m-d',
-          autoclose: true,
-          minDate: 0
+          autoclose: true
         });
       });
     </script>
@@ -83,6 +81,7 @@
       var $prototype = $(template);
       // On ajoute le prototype modifié à la fin de la balise <div>
       $container.append($prototype);
+      $container.append('<hr>');
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
     }
