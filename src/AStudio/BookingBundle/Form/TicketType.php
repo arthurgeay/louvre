@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class TicketType extends AbstractType
@@ -22,8 +22,9 @@ class TicketType extends AbstractType
                 ->add('firstname', TextType::class, array(
                 'label' => 'Prénom',
                 'attr' => ['class' => 'col-sm-5']))
-                ->add('birthdate', DateType::class, array(
+                ->add('birthdate', BirthdayType::class, array(
                     'label' => 'Date de naissance',
+                    'placeholder' => 'La date',
                     'widget' => 'single_text',
                     'attr' => ['class' => 'js-datepicker col-sm-5'],
                     'html5' => false))
