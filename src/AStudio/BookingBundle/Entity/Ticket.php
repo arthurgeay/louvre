@@ -46,7 +46,7 @@ class Ticket
      *
      * @ORM\Column(name="birthdate", type="datetime")
      * 
-     * @Assert\Date(message="{value} n'est pas valide")
+     * @Assert\DateTime(message="{value} n'est pas valide")
      */
     private $birthdate;
 
