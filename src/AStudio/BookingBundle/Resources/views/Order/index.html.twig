@@ -100,17 +100,7 @@
     {{ parent() }}
 
     <script src="{{ asset('datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
-    <script>
-      $(function() {
-        $.datetimepicker.setLocale('fr');
-        $('.js-datepicker').datetimepicker({
-          disabledWeekDays: [0,2],
-          timepicker: false,
-          format: 'Y-m-d',
-          autoclose: true,
-          minDate: 0
-        });
-      });
-    </script>
+    <script src="{{ asset('js/datepicker.js')}}"></script>
 
-{% endblock %}
+{% endblock %} 
+    

@@ -49,16 +49,18 @@
     var index = $container.find(':input').length;
    
     var nb = Number('{{ nbTickets }}');
+
+    var error = '{{ form.vars.errors.form.getErrors(true) }}';
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     for (var i = 0; i < nb; i++)
     {
-        addTicket($container);    
+        addTicket($container);
+        if(error !== null)
+        {
+          break;
+        }
     }
-      
-            
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un 
-            
-    
+  
     // La fonction qui ajoute un formulaire CategoryType
     function addTicket($container) {
       // Dans le contenu de l'attribut « data-prototype », on remplace :

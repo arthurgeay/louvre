@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use AStudio\BookingBundle\Form\TicketType;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class OrderType extends AbstractType
 {
@@ -35,7 +36,8 @@ class OrderType extends AbstractType
                     'label' => false,
                     'entry_type' => TicketType::class,
                     'allow_add' => true,
-                    'allow_delete' => true
+                    'allow_delete' => true,
+                    'constraints' => array(new Valid()), // Pour que la validation fonctionne
                 ])
                 ;
     }

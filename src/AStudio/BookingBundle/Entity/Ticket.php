@@ -4,6 +4,7 @@ namespace AStudio\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ticket
@@ -26,6 +27,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255)
+     * 
+     * @Assert\NotBlank(message = "Ce champ ne doit pas être vide")
      */
     private $lastname;
 
@@ -33,6 +36,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
+     * 
+     * @Assert\NotBlank(message = "Ce champ ne doit pas être vide")
      */
     private $firstname;
 
@@ -40,6 +45,8 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="birthdate", type="datetime")
+     * 
+     * @Assert\Date(message="{value} n'est pas valide")
      */
     private $birthdate;
 
