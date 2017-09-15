@@ -12,15 +12,11 @@
       {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
         
        
-      {# Les erreurs générales du formulaire. #}
+      {{ form_errors(form) }}
         
-        {% for error in form.vars.errors.form.getErrors(true) %}
-            <div class="alert alert-danger">
-                 <li>{{ error.message }}</li>
-            </div>
-        {% endfor %}
-        
-        {{ form_row(form.tickets) }}
+      {{ form_row(form.tickets)}}
+
+
 
       <div class="form-group">
         <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
@@ -50,15 +46,22 @@
    
     var nb = Number('{{ nbTickets }}');
 
-    var error = '{{ form.vars.errors.form.getErrors(true) }}';
+    var errors = '{{ form.vars.errors.form.getErrors(true) }}'; 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     for (var i = 0; i < nb; i++)
     {
+
+      if(errors === '')
+      {
         addTicket($container);
-        if(error !== null)
-        {
-          break;
-        }
+      }
+      else
+      {
+        break;
+      }
+      
+
+        
     }
   
     // La fonction qui ajoute un formulaire CategoryType

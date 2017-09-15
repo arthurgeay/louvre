@@ -58,6 +58,7 @@ class Order
      *
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank(message = "Ce champ ne doit pas être vide")
+     * @Assert\Length(max = 30, maxMessage = "Ce champ ne peut contenir plus de 30 caractères")
      */
     private $name;
 

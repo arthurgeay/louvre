@@ -29,6 +29,7 @@ class Ticket
      * @ORM\Column(name="lastname", type="string", length=255)
      * 
      * @Assert\NotBlank(message = "Ce champ ne doit pas être vide")
+     * @Assert\Length(max = 30, maxMessage = "Ce champ ne peut contenir plus de 30 caractères")
      */
     private $lastname;
 
@@ -38,6 +39,7 @@ class Ticket
      * @ORM\Column(name="firstname", type="string", length=255)
      * 
      * @Assert\NotBlank(message = "Ce champ ne doit pas être vide")
+     * @Assert\Length(max = 30, maxMessage = "Ce champ ne peut contenir plus de 30 caractères")
      */
     private $firstname;
 

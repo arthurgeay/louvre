@@ -13,14 +13,7 @@
         
        
       {# Les erreurs générales du formulaire. #}
-        
-        {% for error in form.vars.errors.form.getErrors(true) %}
-            <div class="alert alert-danger">
-                 <li>{{ error.message }}</li>
-            </div>
-        {% endfor %}
-        
-      
+      {{ form_errors(form) }}
 
       {# Génération manuelle et éclatée : #}
       <div class="form-group">
@@ -28,7 +21,11 @@
         {{ form_label(form.nbTicket, "Nombre de billet", {'label_attr': {'class': 'col-sm-2'}}) }}
 
         {# Affichage des erreurs pour ce champ précis. #}
+        {% if form.nbTicket.vars.errors|length > 0 %}
+        <div class="alert alert-danger">
         {{ form_errors(form.nbTicket) }}
+        </div>
+        {% endif %}
 
         <div class="col-sm-1">
           {# Génération de l'input. #}
@@ -40,7 +37,11 @@
         {{ form_label(form.dateVisit, "Date de la visite", {'label_attr': {'class': 'col-sm-2'}}) }}
 
         {# Affichage des erreurs pour ce champ précis. #}
+        {% if form.dateVisit.vars.errors|length > 0 %}
+        <div class="alert alert-danger">
         {{ form_errors(form.dateVisit) }}
+        </div>
+        {% endif %}
 
         <div class="input-group date col-sm-5">
           {# Génération de l'input. #}
@@ -53,7 +54,11 @@
       <div class="form-group">
         {{form_label(form.type, "Type de billet", {'label_attr': {'class': 'col-sm-2'}}) }}
         
+        {% if form.type.vars.errors|length > 0 %}
+        <div class="alert alert-danger">
         {{ form_errors(form.type) }}
+        </div>
+        {% endif %}
         
         <div class="col-sm-5">
             {{ form_widget(form.type) }}
@@ -62,7 +67,13 @@
         
       <div class="form-group">
         {{ form_label(form.name, "Prénom", {'label_attr': {'class': 'col-sm-2'}}) }}
+        
+        {% if form.name.vars.errors|length > 0 %}
+        <div class="alert alert-danger">
         {{ form_errors(form.name) }}
+        </div>
+        {% endif %}
+
         <div class="col-sm-5">
           {{ form_widget(form.name) }}
         </div>
@@ -71,7 +82,13 @@
       {# Idem pour un autre champ. #}
       <div class="form-group">
         {{ form_label(form.mail, "Adresse mail", {'label_attr': {'class': 'col-sm-2'}}) }}
+        
+        {% if form.mail.vars.errors|length > 0 %}
+        <div class="alert alert-danger">
         {{ form_errors(form.mail) }}
+        </div>
+        {% endif %}
+
         <div class="col-sm-5">
           {{ form_widget(form.mail) }}
         </div>
