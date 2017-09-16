@@ -37,7 +37,6 @@ class OrderType extends AbstractType
                     'entry_type' => TicketType::class,
                     'allow_add' => true,
                     'allow_delete' => true,
-                    'constraints' => array(new Valid()), // Pour que la validation fonctionne
                 ])
                 ;
     }
