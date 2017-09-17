@@ -52,8 +52,6 @@ class OrderController extends Controller
              ->remove('mail')
              ->remove('name');
 
-
-
         // Nombre de ticket
         $nbTickets = $session->get('nbTicket');
         
@@ -63,9 +61,17 @@ class OrderController extends Controller
             $session = $this->get('session');
             $session->set('tickets', $order->getTickets());
 
-            return $this->redirectToRoute('a_studio_core_homepage');
+            return $this->redirectToRoute('a_studio_booking_summary');
         }
         
         return $this->render('AStudioBookingBundle:Order:infos.html.twig', array('form' => $form->createView(), 'nbTickets' => $nbTickets));
+    }
+
+    public function summaryAction()
+    {
+        $session = $this->get('session');
+        $tickets = $session->get('tickets');
+    
+        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array('tickets' => $tickets));
     }
 }
