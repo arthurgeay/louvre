@@ -27,12 +27,12 @@
             {% endif %}
           </th>
           {% for price in prices %}
-          <th class="price text-center">
-            {{ price }}
-          </th>
+            <th class="price text-center">{{ price }}</th>
           {% endfor %}
         </tr>
         {% endfor %}
+
+          
         <tr>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
@@ -42,6 +42,10 @@
         </tr>
       </tbody>
     </table>
+
+    {% for price in prices %}
+      {{ price }}<br />
+    {% endfor %}
 
     <button class="btn btn-primary">Commander</button>
     

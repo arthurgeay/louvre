@@ -76,6 +76,8 @@ class OrderController extends Controller
         $dateAct = new \Datetime();
         $year = $dateAct->format('Y');
 
+        $nbTickets = $session->get('nbTicket');
+
         
         foreach($tickets->toArray() as $ticket)
         {
@@ -108,8 +110,6 @@ class OrderController extends Controller
             }
         }
 
-        var_dump($prices);
-
-        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array('tickets' => $tickets, 'type' => $type, 'prices' => $prices));
+        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array('tickets' => $tickets, 'type' => $type, 'prices' => $prices, 'nbTickets' => $nbTickets));
     }
 }
