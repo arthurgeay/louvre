@@ -26,7 +26,11 @@
             
             {% endif %}
           </th>
-          <th class="price text-center"></th>
+          {% for price in prices %}
+          <th class="price text-center">
+            {{ price }}
+          </th>
+          {% endfor %}
         </tr>
         {% endfor %}
         <tr>
@@ -46,7 +50,7 @@
 {% block javascripts%}
 {{ parent() }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-
+<!--
 <script>
   $(function() {
     var yearAct = new Date().getFullYear(); // Année actuelle
@@ -58,28 +62,56 @@
       var datestring = dateObj.toString(); // Date en string
       var year = new Date(datestring).getFullYear(); // On récupère l'année de la date
       var reduced = $('.reduced')[i].innerText;
+
+      var type = '{{ type }}';
       
+      if (type === 'journee')
+      {
+          if((yearAct - year) < 4)  // Gratuit
+        {
+          $('.price')[i].append('0');
+        }
+        else if (reduced == 1) // Tarif réduit
+        {
+          $('.price')[i].append('10')
+        }
+        else if ((yearAct - year) >= 60) // Tarif sénior
+        {
+          $('.price')[i].append('12');
+        }
+        else if((yearAct - year) > 12) // Tarif normal
+        {
+          $('.price')[i].append('16');
+        }
+        else if((yearAct - year) >= 4 && (yearAct - year) <= 12) // Tarif enfant
+        {
+          $('.price')[i].append('8');
+        }
+      }
+      else if (type === 'demijour')
+      {
+          if((yearAct - year) < 4)  // Gratuit
+        {
+          $('.price')[i].append('0');
+        }
+        else if (reduced == 1) // Tarif réduit
+        {
+          $('.price')[i].append('5')
+        }
+        else if ((yearAct - year) >= 60) // Tarif sénior
+        {
+          $('.price')[i].append('6');
+        }
+        else if((yearAct - year) > 12) // Tarif normal
+        {
+          $('.price')[i].append('8');
+        }
+        else if((yearAct - year) >= 4 && (yearAct - year) <= 12) // Tarif enfant
+        {
+          $('.price')[i].append('4');
+        }
+      }
       
-      if((yearAct - year) < 4)
-      {
-        $('.price')[i].append('0');
-      }
-      else if (reduced == 1)
-      {
-        $('.price')[i].append('10')
-      }
-      else if ((yearAct - year) >= 60)
-      {
-        $('.price')[i].append('12');
-      }
-      else if((yearAct - year) > 12)
-      {
-        $('.price')[i].append('16');
-      }
-      else if((yearAct - year) >= 4 && (yearAct - year) <= 12)
-      {
-        $('.price')[i].append('8');
-      }
       
     }
 
@@ -93,7 +125,7 @@
     $('.total').append(total + ' €');
     
   });
-</script>
+</script>-->
 {% endblock %}
 
     

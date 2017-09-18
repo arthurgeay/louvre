@@ -71,7 +71,45 @@ class OrderController extends Controller
     {
         $session = $this->get('session');
         $tickets = $session->get('tickets');
-    
-        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array('tickets' => $tickets));
+        $type = $session->get('typeTicket');
+
+        $dateAct = new \Datetime();
+        $year = $dateAct->format('Y');
+
+        
+        foreach($tickets->toArray() as $ticket)
+        {
+            $birthdate = $ticket->getBirthdate();
+            $birthdateFormat = $birthdate->format('Y');
+            $reduced = $ticket->getReducedPrice();
+
+            if($type == 'journee')
+            {
+                if(($year - $birthdateFormat) < 4)
+                {
+                    $prices[] = '0';
+                }
+                else if($reduced == true)
+                {
+                    $prices[] = '10';
+                }
+                else if (($year - $birthdateFormat) >= 60)
+                {
+                    $prices[] = '12';
+                }
+                else if (($year - $birthdateFormat) > 12)
+                {
+                    $prices[] = '16';
+                }
+                else if (($year - $birthdateFormat) >= 4 && ($year - $birthdateFormat) <= 12)
+                {
+                    $prices[] = '8';
+                }
+            }
+        }
+
+        var_dump($prices);
+
+        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array('tickets' => $tickets, 'type' => $type, 'prices' => $prices));
     }
 }
