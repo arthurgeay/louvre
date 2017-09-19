@@ -15,7 +15,8 @@
         </tr>
       </thead>
       <tbody>
-        {% for ticket in tickets %}
+        {% for key, ticket in tickets %}
+        {% set keyTicket = key %}
         <tr>
           <th scope="row" class="text-center">{{ ticket.lastname }}</th>
           <th class="text-center">{{ ticket.firstname }}</th>
@@ -26,110 +27,27 @@
             
             {% endif %}
           </th>
-          {% for price in prices %}
-            <th class="price text-center">{{ price }}</th>
+
+          {% for key, price in prices if (key == keyTicket)%}
+            <th class="price text-center"> {{ price }} €</th>
           {% endfor %}
         </tr>
         {% endfor %}
 
-          
         <tr>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
           <td class="text-center"><h4>Total</h4></td>
-          <td class="total text-center"></td>
+          <td class="total text-center">{{ total }} €</td>
         </tr>
       </tbody>
     </table>
-
-    {% for price in prices %}
-      {{ price }}<br />
-    {% endfor %}
+    
 
     <button class="btn btn-primary">Commander</button>
-    
 {% endblock %}
 
-{% block javascripts%}
-{{ parent() }}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<!--
-<script>
-  $(function() {
-    var yearAct = new Date().getFullYear(); // Année actuelle
 
-    for(var i = 0; i < $('.date').length; i++)
-    {
-      var date = $('.date')[i].innerText;
-      var dateObj = moment(date, 'DD-MM-YYYY'); // Date formatée
-      var datestring = dateObj.toString(); // Date en string
-      var year = new Date(datestring).getFullYear(); // On récupère l'année de la date
-      var reduced = $('.reduced')[i].innerText;
-
-      var type = '{{ type }}';
-      
-      if (type === 'journee')
-      {
-          if((yearAct - year) < 4)  // Gratuit
-        {
-          $('.price')[i].append('0');
-        }
-        else if (reduced == 1) // Tarif réduit
-        {
-          $('.price')[i].append('10')
-        }
-        else if ((yearAct - year) >= 60) // Tarif sénior
-        {
-          $('.price')[i].append('12');
-        }
-        else if((yearAct - year) > 12) // Tarif normal
-        {
-          $('.price')[i].append('16');
-        }
-        else if((yearAct - year) >= 4 && (yearAct - year) <= 12) // Tarif enfant
-        {
-          $('.price')[i].append('8');
-        }
-      }
-      else if (type === 'demijour')
-      {
-          if((yearAct - year) < 4)  // Gratuit
-        {
-          $('.price')[i].append('0');
-        }
-        else if (reduced == 1) // Tarif réduit
-        {
-          $('.price')[i].append('5')
-        }
-        else if ((yearAct - year) >= 60) // Tarif sénior
-        {
-          $('.price')[i].append('6');
-        }
-        else if((yearAct - year) > 12) // Tarif normal
-        {
-          $('.price')[i].append('8');
-        }
-        else if((yearAct - year) >= 4 && (yearAct - year) <= 12) // Tarif enfant
-        {
-          $('.price')[i].append('4');
-        }
-      }
-      
-      
-    }
-
-    // Calcul du prix total de la réservation
-    var total = 0;
-    for(var i = 0; i < $('.price').length; i++)
-    {
-      total = parseInt(total) + parseInt($('.price')[i].innerText);
-    }
-
-    $('.total').append(total + ' €');
-    
-  });
-</script>-->
-{% endblock %}
 
     

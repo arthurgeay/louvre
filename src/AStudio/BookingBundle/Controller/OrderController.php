@@ -108,8 +108,33 @@ class OrderController extends Controller
                     $prices[] = '8';
                 }
             }
+            else if($type == 'demijour')
+            {
+                if(($year - $birthdateFormat) < 4)
+                {
+                    $prices[] = '0';
+                }
+                else if($reduced == true)
+                {
+                    $prices[] = '5';
+                }
+                else if (($year - $birthdateFormat) >= 60)
+                {
+                    $prices[] = '6';
+                }
+                else if (($year - $birthdateFormat) > 12)
+                {
+                    $prices[] = '8';
+                }
+                else if (($year - $birthdateFormat) >= 4 && ($year - $birthdateFormat) <= 12)
+                {
+                    $prices[] = '4';
+                }
+            }
         }
 
-        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array('tickets' => $tickets, 'type' => $type, 'prices' => $prices, 'nbTickets' => $nbTickets));
+        $total = array_sum($prices);
+
+        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array('tickets' => $tickets, 'prices' => $prices, 'total' => $total));
     }
 }
