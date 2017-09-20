@@ -47,7 +47,7 @@
     var nb = Number('{{ nbTickets }}');
 
     var errors = '{{ form.vars.errors.form.getErrors(true) }}'; 
-    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    
     for (var i = 0; i < nb; i++)
     {
 
@@ -61,6 +61,8 @@
       }
         
     }
+
+    $('[data-toggle="popover"]').popover(); // 
   
     // La fonction qui ajoute un formulaire de ticket
     function addTicket($container) {
@@ -84,6 +86,8 @@
           format: 'Y-m-d',
           autoclose: true
         });
+
+
 
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;

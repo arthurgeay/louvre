@@ -44,8 +44,20 @@
       </tbody>
     </table>
     
+    <form action="/your-server-side-code" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_uc0zl8nrZky3GZWLVeyRqJAa"
+    data-amount="{{ total }}00"
+    data-name="Musée du Louvre"
+    data-description="Paiement sécurisé"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-currency="EUR"
+    data-zip-code="true">
+  </script>
+</form>
 
-    <button class="btn btn-primary">Commander</button>
 {% endblock %}
 
 
