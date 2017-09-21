@@ -76,8 +76,6 @@ class OrderController extends Controller
         $dateAct = new \Datetime();
         $year = $dateAct->format('Y');
 
-        $nbTickets = $session->get('nbTicket');
-
         
         foreach($tickets->toArray() as $ticket)
         {
