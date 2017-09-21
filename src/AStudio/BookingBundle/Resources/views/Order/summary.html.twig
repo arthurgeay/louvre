@@ -4,6 +4,12 @@
   
     <h2>Récapitulatif de la commande</h2>
 
+    {% if error is defined %}
+      <div class="alert alert-danger">
+        {{ error }}
+      </div>
+    {% endif %}
+
     <table class="table table-hover table-responsive table-bordered">
       <thead>
         <tr>
@@ -44,11 +50,12 @@
       </tbody>
     </table>
     
-    <form action="/your-server-side-code" method="POST">
+    <form action="" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_uc0zl8nrZky3GZWLVeyRqJAa"
-    data-amount="{{ total }}00"
+    data-key="{{ stripe_public_key }}"
+    data-label="Commander"
+    data-amount="{{ total * 100 }}"
     data-name="Musée du Louvre"
     data-description="Paiement sécurisé"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"

@@ -67,7 +67,7 @@ class OrderController extends Controller
         return $this->render('AStudioBookingBundle:Order:infos.html.twig', array('form' => $form->createView(), 'nbTickets' => $nbTickets));
     }
 
-    public function summaryAction()
+    public function summaryAction(Request $request)
     {
         $session = $this->get('session');
         $tickets = $session->get('tickets');
@@ -134,7 +134,29 @@ class OrderController extends Controller
         }
 
         $total = array_sum($prices);
+        $error = false;
+        if($request->isMethod('POST'))
+        {
+            try{
+                $token = $request->request->get('stripeToken');
+                \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
+                \Stripe\Charge::create(array(
+                    "amount" => $total * 100,
+                    "currency" => "eur",
+                    "source" => $token,
+                    "description" => "yeah"
+                ));
+            } catch(\Stripe\Error\Card $e) {
+                $error = 'Il y a un problème avec votre carte bancaire : '.$e->getMessage();
+            }
+        }
 
-        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array('tickets' => $tickets, 'prices' => $prices, 'total' => $total));
+        return $this->render('AStudioBookingBundle:Order:summary.html.twig', array(
+         'tickets' => $tickets,
+         'prices' => $prices,
+         'total' => $total,
+         'stripe_public_key' => $this->getParameter('stripe_public_key'),
+         'error' => $error
+         ));
     }
 }
