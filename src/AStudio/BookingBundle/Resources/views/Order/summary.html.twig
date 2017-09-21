@@ -4,7 +4,7 @@
   
     <h2>Récapitulatif de la commande</h2>
 
-    {% if error is defined %}
+    {% if error|length > 0 %}
       <div class="alert alert-danger">
         {{ error }}
       </div>
