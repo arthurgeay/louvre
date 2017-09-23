@@ -3,6 +3,8 @@
 {% block title %} Accueil - {{parent()}} {% endblock %}
 
 {% block body %}
-    <h1>Accueil</h1>
-    <p>Bienvenue sur la page d'accueil</p>
+    <div class="page-header">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('img/header.jpg') }}');">
+            </div>
+        </div>
 {% endblock %}
