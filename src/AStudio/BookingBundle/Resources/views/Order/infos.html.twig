@@ -5,7 +5,7 @@
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('datetimepicker/jquery.datetimepicker.css') }}">
     {% endblock %}
-    
+    <div class="container">
     <h2>Informations</h2>
     
       <div class="well">
@@ -19,8 +19,12 @@
 
 
       <div class="form-group">
-        <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
       </div>
+      
+      
+
+      
       
 
       {# Génération automatique des champs pas encore écrits.
@@ -30,8 +34,6 @@
 
       {# Fermeture de la balise <form> du formulaire HTML #}
       {{ form_end(form) }}
-
-
 {% endblock %}
 
 {% block javascripts %}
@@ -63,7 +65,7 @@
         
     }
 
-    $('[data-toggle="popover"]').popover(); // 
+      $('[data-toggle="popover"]').popover(); 
   
     // La fonction qui ajoute un formulaire de ticket
     function addTicket($container) {

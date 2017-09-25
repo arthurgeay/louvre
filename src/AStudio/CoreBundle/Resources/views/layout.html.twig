@@ -71,38 +71,14 @@
             </div>
         </div>
     </nav>
-
-
-
-    <div class="container">     
+  
       {% block body %}
       {% endblock %}
-    </div>
-
+ 
 
     <footer class="footer">
             <div class="container">
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="{{ path('a_studio_core_homepage') }}">
-                                Accueil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('a_studio_booking_homepage') }}">
-                                Réserver
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('a_studio_core_contact') }}">
-                                Contact
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
                 <div class="copyright">
-                    &copy;
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, Réalisé par <a href="http://arthurgeay.fr" >Arthur Geay</a>

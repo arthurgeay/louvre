@@ -1,11 +1,12 @@
 {% extends "AStudioBookingBundle::layout.html.twig" %}
 
 {% block order_body %}
+  
     {% block stylesheets %}
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('datetimepicker/jquery.datetimepicker.css') }}">
     {% endblock %}
-    
+    <div class="container">
     <h2>Réserver votre billet</h2>
     
     <div class="well">
@@ -27,7 +28,7 @@
         </div>
         {% endif %}
 
-        <div class="col-sm-1">
+        <div class="col-sm-5">
           {# Génération de l'input. #}
           {{ form_widget(form.nbTicket, {'attr': {'value': '1', 'min': '1'}}) }}
         </div>
@@ -97,7 +98,7 @@
       {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
       <div class="form-group">
           <div class="col-sm-10">
-            <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
           </div>
           
       </div>
@@ -111,6 +112,7 @@
       {# Fermeture de la balise <form> du formulaire HTML #}
       {{ form_end(form) }}
     </div>
+  </div>
 {% endblock %}
 
 {% block javascripts %}
