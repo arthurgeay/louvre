@@ -22,6 +22,11 @@ services:
         class: AStudio\BookingBundle\Validator\HolidaysValidator
         tags:
             - { name: validator.constraint_valid, alias: astudio_booking_holidays }
+
+    astudio_booking.validator.born:
+        class: AStudio\BookingBundle\Validator\BornValidator
+        tags:
+            - { name: validator.constraint_valid, alias: astudio_booking_born }
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

@@ -71,67 +71,12 @@ class OrderController extends Controller
     {
         $session = $this->get('session');
         $tickets = $session->get('tickets');
-        $type = $session->get('typeTicket');
 
-        $dateAct = new \Datetime();
-        $year = $dateAct->format('Y');
+        $calculator = $this->container->get('a_studio_booking.calculator'); // Appel du service de calcul des tarifs
+        $prices = $calculator->prices($session);
+        $total = array_sum($prices); // Calcul du total des billets
 
-        
-        foreach($tickets->toArray() as $ticket)
-        {
-            $birthdate = $ticket->getBirthdate();
-            $birthdateFormat = $birthdate->format('Y');
-            $reduced = $ticket->getReducedPrice();
 
-            if($type == 'journee')
-            {
-                if(($year - $birthdateFormat) < 4)
-                {
-                    $prices[] = '0';
-                }
-                else if($reduced == true)
-                {
-                    $prices[] = '10';
-                }
-                else if (($year - $birthdateFormat) >= 60)
-                {
-                    $prices[] = '12';
-                }
-                else if (($year - $birthdateFormat) > 12)
-                {
-                    $prices[] = '16';
-                }
-                else if (($year - $birthdateFormat) >= 4 && ($year - $birthdateFormat) <= 12)
-                {
-                    $prices[] = '8';
-                }
-            }
-            else if($type == 'demijour')
-            {
-                if(($year - $birthdateFormat) < 4)
-                {
-                    $prices[] = '0';
-                }
-                else if($reduced == true)
-                {
-                    $prices[] = '5';
-                }
-                else if (($year - $birthdateFormat) >= 60)
-                {
-                    $prices[] = '6';
-                }
-                else if (($year - $birthdateFormat) > 12)
-                {
-                    $prices[] = '8';
-                }
-                else if (($year - $birthdateFormat) >= 4 && ($year - $birthdateFormat) <= 12)
-                {
-                    $prices[] = '4';
-                }
-            }
-        }
-
-        $total = array_sum($prices);
         $error = false;
         if($request->isMethod('POST'))
         {

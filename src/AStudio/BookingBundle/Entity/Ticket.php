@@ -5,6 +5,7 @@ namespace AStudio\BookingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use AStudio\BookingBundle\Validator\Born;
 
 /**
  * Ticket
@@ -49,6 +50,7 @@ class Ticket
      * @ORM\Column(name="birthdate", type="datetime")
      * 
      * @Assert\DateTime(message="{value} n'est pas valide")
+     * @Born()
      */
     private $birthdate;
 
