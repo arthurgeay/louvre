@@ -31,6 +31,7 @@ class TicketType extends AbstractType
                 ->add('reducedprice', CheckboxType::class, array(
                     'required' => false,
                     'label' => 'Tarif réduit',
+                    'label_attr' => ['for' => ''],
                     'attr' => ['data-toggle' => 'popover',
                     'title' => 'Information - Tarif réduit', 
                     'data-content' => 'Il est nécessaire de présenter sa carte d\'étudiant, militaire ou équivalent lors de l\'entrée dans le musée.',

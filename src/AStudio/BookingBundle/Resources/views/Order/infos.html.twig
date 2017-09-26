@@ -17,7 +17,6 @@
       {{ form_row(form.tickets)}}
 
 
-
       <div class="form-group">
         <button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
       </div>
@@ -65,7 +64,8 @@
         
     }
 
-      $('[data-toggle="popover"]').popover(); 
+      $('[data-toggle="popover"]').popover(); // Bulle d'aide
+
   
     // La fonction qui ajoute un formulaire de ticket
     function addTicket($container) {
@@ -89,8 +89,6 @@
           format: 'Y-m-d',
           autoclose: true
         });
-
-
 
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
