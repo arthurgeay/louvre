@@ -238,6 +238,7 @@ class Order
     public function addTicket(\AStudio\BookingBundle\Entity\Ticket $ticket)
     {
         $this->tickets[] = $ticket;
+        $ticket->setOrder($this);
 
         return $this;
     }

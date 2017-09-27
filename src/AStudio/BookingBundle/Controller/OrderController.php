@@ -5,6 +5,7 @@ namespace AStudio\BookingBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AStudio\BookingBundle\Entity\Order;
+use AStudio\BookingBundle\Entity\Ticket;
 use AStudio\BookingBundle\Form\OrderType;
 
 class OrderController extends Controller
@@ -87,10 +88,38 @@ class OrderController extends Controller
                     "amount" => $total * 100,
                     "currency" => "eur",
                     "source" => $token,
-                    "description" => "yeah"
-                ));
+                    "description" => "Musée du Louvre"
+                )); 
+
             } catch(\Stripe\Error\Card $e) {
                 $error = 'Il y a un problème avec votre carte bancaire : '.$e->getMessage();
+            }
+
+            if(!$error)
+            {
+                $order = new Order(); // Hydratation de l'objet Order
+                $order->setNbTicket($session->get('nbTicket'))
+                      ->setName($session->get('nameOrder'))
+                      ->setMail($session->get('mailOrder'))
+                      ->setType($session->get('typeTicket'))
+                      ->setDateVisit($session->get('date'));
+
+                foreach($tickets->toArray() as $ticket) // Hydratation de Ticket
+                {
+                    $ticketsF = new Ticket();
+                    $ticketsF->setLastName($ticket->getLastName())
+                            ->setFirstname($ticket->getFirstname())
+                            ->setReducedprice($ticket->getReducedprice())
+                            ->setBirthdate($ticket->getBirthdate());
+
+                    $order->addTicket($ticketsF);
+                }
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($order); 
+                $em->flush(); // On enregistre la commande et les billets en BDD
+
+                //$session->clear(); // On supprime les variables de session
             }
         }
 
