@@ -1,3 +1,28 @@
 services:
+    astudio_booking.validator.sundayortuesday:
+        class: AStudio\BookingBundle\Validator\SundayOrTuesdayValidator
+        tags:
+            - { name: validator.constraint_valid, alias: astudio_booking_sundayortuesday }
+
+    astudio_booking.validator.pastdays:
+        class: AStudio\BookingBundle\Validator\PastDaysValidator
+        tags:
+            - { name: validator.constraint_valid, alias: astudio_booking_pastdays }
+
+    astudio_booking.validator.after2pm:
+        class: AStudio\BookingBundle\Validator\After2PmValidator
+        tags:
+            - { name: validator.constraint_valid, alias: astudio_booking_after2pm }
+
+    astudio_booking.validator.holidays:
+        class: AStudio\BookingBundle\Validator\HolidaysValidator
+        tags:
+            - { name: validator.constraint_valid, alias: astudio_booking_holidays }
+
+    astudio_booking.validator.born:
+        class: AStudio\BookingBundle\Validator\BornValidator
+        tags:
+            - { name: validator.constraint_valid, alias: astudio_booking_born }
+
     a_studio_booking.calculator:
         class: AStudio\BookingBundle\Calculator\Calculator

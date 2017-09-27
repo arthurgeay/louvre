@@ -9,6 +9,7 @@ use AStudio\BookingBundle\Validator\SundayOrTuesday;
 use AStudio\BookingBundle\Validator\PastDays;
 use AStudio\BookingBundle\Validator\After2Pm;
 use AStudio\BookingBundle\Validator\Holidays;
+use AStudio\BookingBundle\Validator\VerifTicket;
 
 /**
  * Order
@@ -58,6 +59,7 @@ class Order
     * @PastDays()
     * @After2Pm()
     * @Holidays()
+    * @VerifTicket()
     */
     private $dateVisit;
 

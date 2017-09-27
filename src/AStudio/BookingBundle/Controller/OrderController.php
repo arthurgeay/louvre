@@ -20,7 +20,7 @@ class OrderController extends Controller
         
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
-            $session = $this->get('session');
+            $session = $this->get('session'); // On stocke en session les infos de la commande
             $session->set('nbTicket', $order->getNbTicket());
             $session->set('nameOrder', $order->getName());
             $session->set('mailOrder', $order->getMail());

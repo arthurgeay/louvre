@@ -3,30 +3,12 @@
 parameters:
 
 services:
-    astudio_booking.validator.sundayortuesday:
-        class: AStudio\BookingBundle\Validator\SundayOrTuesdayValidator
+    a_studio_booking.validator.verifticket:
+        class: AStudio\BookingBundle\Validator\VerifTicketValidator
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
-            - { name: validator.constraint_valid, alias: astudio_booking_sundayortuesday }
+            - { name: validator.constraint_valid, alias: astudio_booking_verifticket }
 
-    astudio_booking.validator.pastdays:
-        class: AStudio\BookingBundle\Validator\PastDaysValidator
-        tags:
-            - { name: validator.constraint_valid, alias: astudio_booking_pastdays }
-
-    astudio_booking.validator.after2pm:
-        class: AStudio\BookingBundle\Validator\After2PmValidator
-        tags:
-            - { name: validator.constraint_valid, alias: astudio_booking_after2pm }
-
-    astudio_booking.validator.holidays:
-        class: AStudio\BookingBundle\Validator\HolidaysValidator
-        tags:
-            - { name: validator.constraint_valid, alias: astudio_booking_holidays }
-
-    astudio_booking.validator.born:
-        class: AStudio\BookingBundle\Validator\BornValidator
-        tags:
-            - { name: validator.constraint_valid, alias: astudio_booking_born }
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
