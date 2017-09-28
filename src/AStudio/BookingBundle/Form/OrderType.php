@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use AStudio\BookingBundle\Form\TicketType;
 use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class OrderType extends AbstractType
 {
@@ -39,6 +41,7 @@ class OrderType extends AbstractType
                     'allow_delete' => true,
                 ])
                 ;
+
     }
     
     /**

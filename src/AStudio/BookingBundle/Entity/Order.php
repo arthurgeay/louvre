@@ -16,6 +16,7 @@ use AStudio\BookingBundle\Validator\VerifTicket;
  *
  * @ORM\Table(name="`order`")
  * @ORM\Entity(repositoryClass="AStudio\BookingBundle\Repository\OrderRepository")
+ * @VerifTicket()
  */
 class Order
 {
@@ -59,7 +60,6 @@ class Order
     * @PastDays()
     * @After2Pm()
     * @Holidays()
-    * @VerifTicket()
     */
     private $dateVisit;
 
@@ -89,7 +89,6 @@ class Order
     * @Assert\Valid()
     */
     private $tickets;
-
 
     /**
      * Get id

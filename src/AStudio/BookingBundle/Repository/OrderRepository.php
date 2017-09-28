@@ -15,7 +15,7 @@ class OrderRepository extends \Doctrine\ORM\EntityRepository
 		$qb = $this->createQueryBuilder('o');
 
 		$qb
-		   ->select('sum(o.nbTicket)')
+		   ->select('sum(o.nbTicket)') // On fait la somme du nb de ticket par rapport à une date précise
 		   ->where('o.dateVisit = :date')
 		   ->setParameter('date', $date)
 		   ;

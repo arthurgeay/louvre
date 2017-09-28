@@ -14,18 +14,21 @@ class VerifTicketValidator extends ConstraintValidator
     $this->em = $em;
   }
   
-  public function validate($value, Constraint $constraint)
+  public function validate($order, Constraint $constraint)
   {
 
-  $result = $this
+  $date = $order->getDateVisit(); // On récupère les infos du formulaire (date et nb de ticket)
+  $nbTicket = $order->getNbTicket();
+
+  $result = $this                 // On vérifie en BDD combien de ticket ont déjà été reservé pour la date demandé
                   ->em
-                  ->getRepository('AStudioBookingBundle:Order')
-                  ->countTickets($value)
+                  ->getRepository('AStudioBookingBundle:Order') 
+                  ->countTickets($date)
                   ;
-   
-   	if($result >= 1000) // On prend le résultat + le nombre 
+
+   	if($result + $nbTicket > 1000) // Si le nb de ticket déjà réservé + le nb de ticket demandé est supérieur à 1000
     {
       $this->context->addViolation($constraint->message);
     } 
-  }
+  } 
 }

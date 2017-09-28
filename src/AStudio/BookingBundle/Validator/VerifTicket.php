@@ -15,4 +15,9 @@ class VerifTicket extends Constraint
   {
   	return 'astudio_booking_verifticket';
   }
+
+  public function getTargets()
+  {
+  	return self::CLASS_CONSTRAINT;
+  }
 }
