@@ -1,0 +1,33 @@
+<img src="https://s-media-cache-ak0.pinimg.com/originals/74/55/66/745566d00dd890504b0e518372f0120a.png" />
+<h3>Réservation</h3>
+
+<p>Bonjour, {{ name }}<br />
+Vous avez réservé des billets pour le musée du Louvre.
+</p>
+
+<h3>Informations de la commande</h3>
+
+<p>
+	{% set numbers = '0123456789'%}
+	{% set chars = 'abcdefghijklmnopqrstuvwxyz' %}
+	{% set code = [] %}
+
+	{% for i in 1..10 %} {# Boucle pour générer un code de 10 caractères #}
+		{% set randomChars = random(chars|upper ~ numbers) %} {# Random sur les chiffres et les lettres #}
+		{% set code = code|merge([randomChars])%} {# On fusionne les deux tableaux #}
+	{% endfor %}
+
+	{% set randomCode = code|join %}
+
+	N° de commande : {{ randomCode }}
+
+</p>
+<p>Date de visite :  {{ date|date('d/m/Y') }}</p>
+<p>Total de la réservation : {{ total }} €</p>
+
+<ul>
+{% for ticket in tickets %}
+	<li>{{ ticket.lastname }} {{ ticket.firstname }}</li>
+{% endfor %}
+</ul>
+

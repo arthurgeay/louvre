@@ -10,5 +10,9 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: bac9bdc5e8d2739eb305d2818e501d5794e72995
+
     stripe_secret_key: sk_test_5n6lGSgAdLfduxIqM5SFTy7J
     stripe_public_key: pk_test_Escqnize0A654yF4vPclgUD9
+
+    mailer_user: arthurgeay.contact
+    mailer_password: phiuhsysvxpmwrmw

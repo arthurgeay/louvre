@@ -119,6 +119,14 @@ class OrderController extends Controller
                 $em->persist($order); 
                 $em->flush(); // On enregistre la commande et les billets en BDD
 
+                $message = (new \Swift_Message('Réservation billets - Musée du Louvre'))
+                    ->setFrom('ticket@arthurgeay.fr')
+                    ->setTo($session->get('mailOrder'))
+                    ->setBody($this->renderView('Emails/ticket.html.twig',
+                        array('name' => $session->get('nameOrder'), 'tickets' => $tickets, 'total' => $total, 'date' => $session->get('date'))),'text/html');
+
+                $this->get('mailer')->send($message);
+
                 //$session->clear(); // On supprime les variables de session
             }
         }
