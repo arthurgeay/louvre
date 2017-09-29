@@ -16,7 +16,6 @@ class OrderController extends Controller
         $form = $this->get('form.factory')->create(OrderType::class, $order);
         $form->remove('tickets');
         
-        // PENSER A LA CONTRAINTE DES 1000 billets sur le champ date
         
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
