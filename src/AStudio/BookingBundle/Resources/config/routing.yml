@@ -9,3 +9,7 @@ a_studio_booking_informations:
 a_studio_booking_summary:
     path: /summary
     defaults: {_controller: AStudioBookingBundle:Order:summary }
+
+a_studio_booking_confirm:
+    path: /confirm
+    defaults: {_controller: AStudioBookingBundle:Order:confirm }

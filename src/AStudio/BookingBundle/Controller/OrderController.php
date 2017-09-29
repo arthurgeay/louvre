@@ -127,7 +127,9 @@ class OrderController extends Controller
 
                 $this->get('mailer')->send($message);
 
-                //$session->clear(); // On supprime les variables de session
+                $session->clear(); // On supprime les variables de session
+                
+                return $this->redirectToRoute('a_studio_booking_confirm');
             }
         }
 
@@ -138,5 +140,10 @@ class OrderController extends Controller
          'stripe_public_key' => $this->getParameter('stripe_public_key'),
          'error' => $error
          ));
+    }
+
+    public function confirmAction()
+    {
+        return $this->render('AStudioBookingBundle:Order:confirm.html.twig');
     }
 }
