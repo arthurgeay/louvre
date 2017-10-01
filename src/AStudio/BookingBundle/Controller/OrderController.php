@@ -91,7 +91,7 @@ class OrderController extends Controller
                 )); 
 
             } catch(\Stripe\Error\Card $e) {
-                $error = 'Il y a un problème avec votre carte bancaire : '.$e->getMessage();
+                $error = 'Il y a un problème avec votre carte bancaire : Veuillez réessayer !';
             }
 
             if(!$error)
