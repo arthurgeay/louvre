@@ -3343,7 +3343,10 @@ Created using IcoMoon - icomoon.io
     padding-right: 0; }
 
 .footer {
-  padding: 24px 0; }
+  padding: 24px 0; 
+  position: absolute;
+  bottom: 0;
+  width: 100%;}
   .footer.footer-default {
     background-color: #f2f2f2; }
   .footer nav {
