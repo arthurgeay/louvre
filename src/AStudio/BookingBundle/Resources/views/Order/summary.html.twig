@@ -1,9 +1,19 @@
 {% extends "AStudioBookingBundle::layout.html.twig" %}
 
 {% block order_body %}
+  <div class="page-header page-header-small clear-filter" filter-color="orange">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('img/louvre-facade.jpeg') }}');">
+    </div>
+    <div class="container">
+      <div class="content-center">
+        <div class="text-center">
+          <h1 class="title">Récapitulatif de la commande</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
   <div class="container">
-  
-    <h2>Récapitulatif de la commande</h2>
 
     {% if error|length > 0 %}
       <div class="alert alert-danger">
@@ -59,13 +69,28 @@
     data-amount="{{ total * 100 }}"
     data-name="Musée du Louvre"
     data-description="Paiement sécurisé"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-image="https://s-media-cache-ak0.pinimg.com/originals/74/55/66/745566d00dd890504b0e518372f0120a.png"
     data-locale="auto"
     data-currency="EUR"
     data-zip-code="true">
   </script>
+  <script>
+
+    document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+
+    </script>
+<div class="form-group centered">
+  <div class="col-md-6">
+<button id="customButton" class="btn btn-primary btn-round btn-lg btn-block">
+    <span style="display: block;"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Commander</span>
+</button>
+</div>
+</div>
+
 </form>
 </div>
+</div>
+
 {% endblock %}
 
 

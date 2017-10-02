@@ -17,16 +17,16 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('lastname', TextType::class, array(
-                'label' => 'Nom',
-                'attr' => ['class' => 'col-sm-5']))
+                'label' => false, 
+                'attr' => ['placeholder' => 'Nom']))
                 ->add('firstname', TextType::class, array(
-                'label' => 'Prénom',
-                'attr' => ['class' => 'col-sm-5']))
+                'label' => false,
+                'attr' => ['placeholder' => 'Prénom']))
                 ->add('birthdate', BirthdayType::class, array(
-                    'label' => 'Date de naissance',
+                    'label' => false,
                     'placeholder' => 'La date',
                     'widget' => 'single_text',
-                    'attr' => ['class' => 'js-datepicker col-sm-5'],
+                    'attr' => ['class' => 'js-datepicker', 'placeholder' => 'Date de naissance'],
                     'html5' => false))
                 ->add('reducedprice', CheckboxType::class, array(
                     'required' => false,

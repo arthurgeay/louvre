@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Réservation de billets pour le musée du Louvre">
     <meta name="author" content="AStudio - Louvre">
-    <link rel="icon" href="">
+    <link rel="icon" href="{{ asset('img/louvre-fav.png') }}">
 
     <title>{% block title %} Musée du Louvre {% endblock %}</title>
       
@@ -21,10 +21,10 @@
     {% endblock %}
   </head>
 
-  <body class="template-page sidebar-collapse">
+  <body class="landing-page sidebar-collapse">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg bg-primary fixed-top" color-on-scroll="400">
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top" >
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="{{ path('a_studio_core_homepage') }}" rel="tooltip" title="Accueil" data-placement="bottom">
@@ -76,7 +76,7 @@
       {% endblock %}
  
 
-    <footer class="footer">
+    <footer class="footer navbar-fixed-bottom">
             <div class="container">
                 <div class="copyright">
                     <script>

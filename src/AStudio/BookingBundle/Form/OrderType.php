@@ -30,6 +30,7 @@ class OrderType extends AbstractType
                     'html5' => false))
                 ->add('type', ChoiceType::class, array(
                 'choices' => array(
+                    'Choisir un type de billet...' => null,
                     'Journée' => 'journee',
                     'Demi-journée' => 'demijour')))
                 ->add('name', TextType::class)

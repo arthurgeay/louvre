@@ -1,125 +1,131 @@
 {% extends "AStudioBookingBundle::layout.html.twig" %}
-
 {% block order_body %}
   
-    {% block stylesheets %}
-        {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('datetimepicker/jquery.datetimepicker.css') }}">
-    {% endblock %}
+  {% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('datetimepicker/jquery.datetimepicker.css') }}">
+  {% endblock %}
+  <div class="page-header page-header-small clear-filter" filter-color="orange">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('img/louvre-facade.jpeg') }}');">
+    </div>
     <div class="container">
-    <h2>Réserver votre billet</h2>
-    
-    <div class="well">
-      {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-        
-       
-      {# Les erreurs générales du formulaire. #}
-      {{ form_errors(form) }}
-
-      {# Génération manuelle et éclatée : #}
-      <div class="form-group">
-        {# Génération du label. #}
-        {{ form_label(form.nbTicket, "Nombre de billet", {'label_attr': {'class': 'col-sm-2'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
-        {% if form.nbTicket.vars.errors|length > 0 %}
-        <div class="alert alert-danger">
-        {{ form_errors(form.nbTicket) }}
-        </div>
-        {% endif %}
-
-        <div class="col-sm-5">
-          {# Génération de l'input. #}
-          {{ form_widget(form.nbTicket, {'attr': {'value': '1', 'min': '1'}}) }}
+      <div class="content-center">
+        <div class="text-center">
+          <h1 class="title">Réserver votre billet</h1>
         </div>
       </div>
-      
-      <div class="form-group">
-        {{ form_label(form.dateVisit, "Date de la visite", {'label_attr': {'class': 'col-sm-2'}}) }}
-
-        {# Affichage des erreurs pour ce champ précis. #}
-        {% if form.dateVisit.vars.errors|length > 0 %}
-        <div class="alert alert-danger">
-        {{ form_errors(form.dateVisit) }}
-        </div>
-        {% endif %}
-
-        <div class="input-group date col-sm-5">
-          {# Génération de l'input. #}
-          {{ form_widget(form.dateVisit) }}
-            <span class="input-group-addon"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
-        </div>
-      
-      </div>
-        
-      <div class="form-group">
-        {{form_label(form.type, "Type de billet", {'label_attr': {'class': 'col-sm-2'}}) }}
-        
-        {% if form.type.vars.errors|length > 0 %}
-        <div class="alert alert-danger">
-        {{ form_errors(form.type) }}
-        </div>
-        {% endif %}
-        
-        <div class="col-sm-5">
-            {{ form_widget(form.type) }}
-        </div>
-      </div>
-        
-      <div class="form-group">
-        {{ form_label(form.name, "Prénom", {'label_attr': {'class': 'col-sm-2'}}) }}
-        
-        {% if form.name.vars.errors|length > 0 %}
-        <div class="alert alert-danger">
-        {{ form_errors(form.name) }}
-        </div>
-        {% endif %}
-
-        <div class="col-sm-5">
-          {{ form_widget(form.name) }}
-        </div>
-      </div>    
-        
-      {# Idem pour un autre champ. #}
-      <div class="form-group">
-        {{ form_label(form.mail, "Adresse mail", {'label_attr': {'class': 'col-sm-2'}}) }}
-        
-        {% if form.mail.vars.errors|length > 0 %}
-        <div class="alert alert-danger">
-        {{ form_errors(form.mail) }}
-        </div>
-        {% endif %}
-
-        <div class="col-sm-5">
-          {{ form_widget(form.mail) }}
-        </div>
-      </div>
-
-      {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-      <div class="form-group">
-          <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
-          </div>
-          
-      </div>
-      
-      
-      {# Génération automatique des champs pas encore écrits.
-         Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-         et tous les champs cachés (type « hidden »). #}
-      {{ form_rest(form) }}
-        
-      {# Fermeture de la balise <form> du formulaire HTML #}
-      {{ form_end(form) }}
     </div>
   </div>
-{% endblock %}
-
-{% block javascripts %}
+  <div class="section">
+    <div class="container">
+      <div class="well">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        
+        
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(form) }}
+        {# Génération manuelle et éclatée : #}
+        <div class="form-group centered">
+          <div class="col-md-6">
+            {# Génération du label. #}
+            
+            {# Affichage des erreurs pour ce champ précis. #}
+            {% if form.nbTicket.vars.errors|length > 0 %}
+              <div class="alert alert-danger">
+                {{ form_errors(form.nbTicket) }}
+              </div>
+            {% endif %}
+            
+            {# Génération de l'input. #}
+            {{ form_widget(form.nbTicket, {'attr': {'placeholder': 'Nombre de billet', 'min': '1'}}) }}
+          </div>
+        </div>
+        
+        <div class="form-group centered">
+          
+          <div class="col-md-6">
+            {# Affichage des erreurs pour ce champ précis. #}
+            {% if form.dateVisit.vars.errors|length > 0 %}
+              <div class="alert alert-danger">
+                {{ form_errors(form.dateVisit) }}
+              </div>
+            {% endif %}
+            <div class="input-group date">
+              {# Génération de l'input. #}
+              {{ form_widget(form.dateVisit, {'attr': {'placeholder': 'Date de la visite'}}) }}
+              <span class="input-group-addon"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="form-group centered">
+          
+          <div class="col-md-6">
+            
+            {% if form.type.vars.errors|length > 0 %}
+              <div class="alert alert-danger">
+                {{ form_errors(form.type) }}
+              </div>
+            {% endif %}
+            
+            
+            {{ form_widget(form.type) }}
+            
+          </div>
+        </div>
+        
+        <div class="form-group centered">
+          
+          <div class="col-md-6">
+            
+            {% if form.name.vars.errors|length > 0 %}
+              <div class="alert alert-danger">
+                {{ form_errors(form.name) }}
+              </div>
+            {% endif %}
+            
+            {{ form_widget(form.name, {'attr': {'placeholder': 'Prénom'}}) }}
+            
+          </div>
+        </div>
+        
+        {# Idem pour un autre champ. #}
+        <div class="form-group centered">
+          
+          <div class="col-md-6">
+            {% if form.mail.vars.errors|length > 0 %}
+              <div class="alert alert-danger">
+                {{ form_errors(form.mail) }}
+              </div>
+            {% endif %}
+            
+            {{ form_widget(form.mail, {'attr': {'placeholder': 'Adresse e-mail'}}) }}
+            
+          </div>
+        </div>
+        {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+        <div class="form-group centered">
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
+          </div>
+          
+        </div>
+        
+        
+        {# Génération automatique des champs pas encore écrits.
+        Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+        et tous les champs cachés (type « hidden »). #}
+        {{ form_rest(form) }}
+        
+        {# Fermeture de la balise <form> du formulaire HTML #}
+          {{ form_end(form) }}
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+  {% block javascripts %}
     {{ parent() }}
-
     <script src="{{ asset('datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
     <script src="{{ asset('js/datepicker.js')}}"></script>
-
-{% endblock %} 
-    
+  {% endblock %}
