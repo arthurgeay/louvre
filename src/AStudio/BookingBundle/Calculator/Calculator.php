@@ -69,4 +69,11 @@ class Calculator
 
         return $prices;
 	}
+
+
+    public function total($prices)
+    {
+        $price = array_sum($prices);
+        return $price;
+    }
 }
