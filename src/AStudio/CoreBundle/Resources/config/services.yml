@@ -1,4 +1,6 @@
 services:
-#    a_studio_core.example:
-#        class: AStudio\CoreBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    a_studio_core.email:
+        class: AStudio\CoreBundle\Email\AStudioMail
+        arguments:
+            - "@mailer"
+            - "@templating"
