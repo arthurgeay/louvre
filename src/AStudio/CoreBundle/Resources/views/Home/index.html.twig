@@ -1,19 +1,16 @@
 {% extends "AStudioCoreBundle::layout.html.twig" %}
-
 {% block title %} Accueil - {{parent()}} {% endblock %}
-
 {% block body %}
     <div class="page-header">
-            <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('img/header.jpg') }}');">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('img/header.jpg') }}');">
+        </div>
+        <div class="container">
+            <div class="content-center brand">
+                
+                <h1 class="h1-seo">Le musée du Louvre</h1>
+                <h3>Réservez dès maintenant vos billets</h3>
+                <a href="{{ path('a_studio_booking_homepage') }}"><button class="btn btn-primary">Réserver</button></a>
             </div>
-            <div class="container">
-                <div class="content-center brand">
-                    
-                    <h1 class="h1-seo">Le musée du Louvre</h1>
-                    <h3>Réservez dès maintenant vos billets</h3>
-
-                    <a href="{{ path('a_studio_booking_homepage') }}"><button class="btn btn-primary">Réserver</button></a>
-                </div>
-    </div>
-	<p></p>
+        </div>
+        <p></p>
 {% endblock %}

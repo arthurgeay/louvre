@@ -36,6 +36,13 @@ class OrderController extends Controller
     {
         $session = $this->get('session');
 
+        // Si les variables de session n'existent pas
+        if(!$session->has('nbTicket'))
+        {
+            $session->clear();
+            return $this->redirectToRoute('a_studio_booking_homepage'); // On redirige sur la 1ère étape
+        }
+
         $order = new Order();
         // Hydratation avec les infos de la commande
         $order->setName($session->get('nameOrder'))
@@ -70,11 +77,18 @@ class OrderController extends Controller
     public function summaryAction(Request $request)
     {
         $session = $this->get('session');
+
+        // Si les variables de session n'existent pas
+        if(!$session->has('tickets'))
+        {
+            $session->clear();
+            return $this->redirectToRoute('a_studio_booking_homepage'); // On redirige sur la 1ère étape
+        }
+
+
         $tickets = $session->get('tickets');
 
-        
         $calculator = $this->container->get('a_studio_booking.calculator'); // Appel du service de calcul
-        
         $prices = $calculator->prices($session); // Prix par billet
         $total = $calculator->total($prices); // Calcul du total des billets
 
@@ -121,9 +135,9 @@ class OrderController extends Controller
                 $em->flush(); // On enregistre la commande et les billets en BDD
 
                 $this->get('a_studio_core.email')->sendTicket($session, $tickets, $total); // Service d'envoi du ticket par mail
-
-                $session->clear(); // On supprime les variables de session
                 
+                $session->set('total', $total); // Enregistrement en session
+
                 return $this->redirectToRoute('a_studio_booking_confirm');
             }
         }
@@ -139,6 +153,16 @@ class OrderController extends Controller
 
     public function confirmAction()
     {
+        $session = $this->get('session');
+
+        if(!$session->has('nbTicket') || !$session->has('tickets') || !$session->has('total'))
+        {
+            $session->clear();
+            return $this->redirectToRoute('a_studio_booking_homepage');
+        }
+
+        $session->clear(); // On supprime les variables de session
+
         return $this->render('AStudioBookingBundle:Order:confirm.html.twig');
     }
 }
