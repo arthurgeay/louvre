@@ -11,7 +11,7 @@
     <div class="container">
       <div class="content-center">
         <div class="text-center">
-          <h1 class="title">Réserver votre billet</h1>
+          <h1 class="title">{{ 'Réserver votre billet'|trans }}</h1>
         </div>
       </div>
     </div>
@@ -23,10 +23,11 @@
         
         
         {# Les erreurs générales du formulaire. #}
-        {{ form_errors(form) }}
+        
         {# Génération manuelle et éclatée : #}
         <div class="form-group centered">
           <div class="col-md-6">
+            {{ form_errors(form) }}
             {# Génération du label. #}
             
             {# Affichage des erreurs pour ce champ précis. #}
@@ -37,7 +38,7 @@
             {% endif %}
             
             {# Génération de l'input. #}
-            {{ form_widget(form.nbTicket, {'attr': {'placeholder': 'Nombre de billet', 'min': '1'}}) }}
+            {{ form_widget(form.nbTicket, {'attr': {'placeholder': 'Nombre de billet'|trans, 'min': '1'}}) }}
           </div>
         </div>
         
@@ -52,7 +53,7 @@
             {% endif %}
             <div class="input-group date">
               {# Génération de l'input. #}
-              {{ form_widget(form.dateVisit, {'attr': {'placeholder': 'Date de la visite'}}) }}
+              {{ form_widget(form.dateVisit, {'attr': {'placeholder': 'Date de la visite'|trans }}) }}
               <span class="input-group-addon"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
             </div>
             
@@ -85,7 +86,7 @@
               </div>
             {% endif %}
             
-            {{ form_widget(form.name, {'attr': {'placeholder': 'Prénom'}}) }}
+            {{ form_widget(form.name, {'attr': {'placeholder': 'Prénom'|trans }}) }}
             
           </div>
         </div>
@@ -100,14 +101,14 @@
               </div>
             {% endif %}
             
-            {{ form_widget(form.mail, {'attr': {'placeholder': 'Adresse e-mail'}}) }}
+            {{ form_widget(form.mail, {'attr': {'placeholder': 'Adresse e-mail'|trans }}) }}
             
           </div>
         </div>
         {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
         <div class="form-group centered">
           <div class="col-md-6">
-            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block"><i class="fa fa-arrow-right" aria-hidden="true"></i> Continuer</button>
+            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block"><i class="fa fa-arrow-right" aria-hidden="true"></i> {{ 'Continuer'|trans }}</button>
           </div>
           
         </div>

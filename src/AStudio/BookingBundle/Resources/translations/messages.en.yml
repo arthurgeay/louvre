@@ -1,0 +1,23 @@
+Réservation: Booking
+'Réserver votre billet': 'Book your ticket'
+'Nombre de billet': 'Number of tickets'
+'Date de la visite': 'Date of visit'
+Continuer: Continue
+Prénom: 'First name'
+'Adresse e-mail': 'E-mail adress'
+'Choisir un type de billet...': 'Choose a ticket type...'
+Journée: Day
+Demi-journée: 'Half day'
+Nom: 'Last name'
+'Date de naissance': 'Birth date'
+'Tarif réduit': 'Reduced price'
+Informations: 'Ticket information'
+'Information - Tarif réduit': 'It is necessary to present his student card, military or equivalent when entering the museum.'
+'Il est nécessaire de présenter sa carte d''étudiant, militaire ou équivalent lors de l''entrée dans le musée.': 'It is necessary to present his student card, military or equivalent when entering the museum.'
+'Récapitulatif de la commande': 'Order summary'
+Prix: Price
+Total: Total
+Commander: Buy
+'Il y a un problème avec votre carte bancaire : Veuillez réessayer !': 'There is a problem with your credit card: Please try again!'
+'Confirmation de la réservation': 'Reservation confirmation'
+"La commande a bien été enregistrée !<br />\n                Vous allez recevoir un email de confirmation d'ici quelques minutes.": "The order has been saved!<br />\n                You will receive a confirmation email within a few minutes."

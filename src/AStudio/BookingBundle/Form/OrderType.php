@@ -32,7 +32,8 @@ class OrderType extends AbstractType
                 'choices' => array(
                     'Choisir un type de billet...' => null,
                     'Journée' => 'journee',
-                    'Demi-journée' => 'demijour')))
+                    'Demi-journée' => 'demijour'),
+                    'choice_translation_domain' => true ))
                 ->add('name', TextType::class)
                 ->add('mail', EmailType::class)
                 ->add('tickets', CollectionType::class, [

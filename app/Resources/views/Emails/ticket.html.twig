@@ -1,11 +1,11 @@
 <img src="https://s-media-cache-ak0.pinimg.com/originals/74/55/66/745566d00dd890504b0e518372f0120a.png" />
-<h3>Réservation</h3>
+<h3>{{ 'Réservation'|trans }}</h3>
 
-<p>Bonjour {{ name }},<br />
-Vous avez réservé des billets pour le musée du Louvre.
+<p>{{ 'Bonjour'|trans }} {{ name }},<br />
+{{ 'Vous avez réservé des billets pour le musée du Louvre.'|trans }}
 </p>
 
-<h3>Informations de la commande</h3>
+<h3>{{ 'Informations de la commande'|trans }}</h3>
 
 <p>
 	{% set numbers = '0123456789' %}
@@ -19,11 +19,11 @@ Vous avez réservé des billets pour le musée du Louvre.
 
 	{% set randomCode = code|join %}
 
-	N° de commande : {{ randomCode }}
+	{{ 'N° de commande :'|trans }} {{ randomCode }}
 
 </p>
-<p>Date de visite :  {{ date|date('d/m/Y') }}</p>
-<p>Prix total de la réservation : {{ total }} €</p>
+<p>{{ 'Date de visite :'|trans }}  {{ date|date('d/m/Y') }}</p>
+<p> {{ 'Prix total de la réservation :'|trans }} {{ total }} €</p>
 
 <ul>
 {% for ticket in tickets %}

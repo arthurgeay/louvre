@@ -7,7 +7,7 @@
     <div class="container">
       <div class="content-center">
         <div class="text-center">
-          <h1 class="title">Récapitulatif de la commande</h1>
+          <h1 class="title">{{ 'Récapitulatif de la commande'|trans }}</h1>
         </div>
       </div>
     </div>
@@ -17,18 +17,18 @@
 
     {% if error|length > 0 %}
       <div class="alert alert-danger">
-        {{ error }}
+        {{ error|trans }}
       </div>
     {% endif %}
 
     <table class="table table-hover table-responsive table-bordered">
       <thead>
         <tr>
-          <th class="text-center">Nom</th>
-          <th class="text-center">Prénom</th>
-          <th class="text-center">Date de naissance</th>
-          <th class="text-center">Tarif réduit</th>
-          <th class="text-center">Prix</th>
+          <th class="text-center">{{ 'Nom'|trans }}</th>
+          <th class="text-center">{{ 'Prénom'|trans }}</th>
+          <th class="text-center">{{ 'Date de naissance'|trans }}</th>
+          <th class="text-center">{{ 'Tarif réduit'|trans }}</th>
+          <th class="text-center">{{ 'Prix'|trans }}</th>
         </tr>
       </thead>
       <tbody>
@@ -55,7 +55,7 @@
           <th>&nbsp;</th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
-          <td class="text-center"><h4>Total</h4></td>
+          <td class="text-center"><h4>{{ 'Total'|trans }}</h4></td>
           <td class="total text-center">{{ total }} €</td>
         </tr>
       </tbody>
@@ -82,7 +82,7 @@
 <div class="form-group centered">
   <div class="col-md-6">
 <button id="customButton" class="btn btn-primary btn-round btn-lg btn-block">
-    <span style="display: block;"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Commander</span>
+    <span style="display: block;"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> {{ 'Commander'|trans }}</span>
 </button>
 </div>
 </div>
