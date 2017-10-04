@@ -104,7 +104,7 @@ class OrderController extends Controller
                     "currency" => "eur",
                     "source" => $token,
                     "description" => "Musée du Louvre"
-                )); 
+                ));
 
             } catch(\Stripe\Error\Card $e) {
                 $error = 'Il y a un problème avec votre carte bancaire : Veuillez réessayer !';
@@ -134,7 +134,9 @@ class OrderController extends Controller
                 $em->persist($order); 
                 $em->flush(); // On enregistre la commande et les billets en BDD
 
+
                 $this->get('a_studio_core.email')->sendTicket($session, $tickets, $total); // Service d'envoi du ticket par mail
+                 
                 
                 $session->set('total', $total); // Enregistrement en session
 

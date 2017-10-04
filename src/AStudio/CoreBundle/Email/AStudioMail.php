@@ -17,7 +17,7 @@ class AStudioMail
 	public function sendTicket($session, $tickets, $total)
 	{
 		$message = (new \Swift_Message('Réservation billets - Musée du Louvre'))
-                    ->setFrom('ticket@arthurgeay.fr')
+                    ->setFrom('arthurgeay.contact@gmaiL.com')
                     ->setTo($session->get('mailOrder'))
                     ->setBody($this->templating->render('Emails/ticket.html.twig',
                         array('name' => $session->get('nameOrder'), 'tickets' => $tickets, 'total' => $total, 'date' => $session->get('date'))),'text/html');
