@@ -1,0 +1,23 @@
+{% extends "AStudioCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Une erreur s'est produite : {{ status_text }} - {{ parent()}}
+{% endblock %}
+
+{% block language %}
+{% endblock %}
+
+{% block body%}
+<div class="page-header">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('img/background-error.jpeg')}}');">
+        </div>
+        <div class="container">
+            <div class="content-center brand">
+                <h1 class="h1-seo"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color: red;"></i>Une erreur s'est produite</h1>
+                <h3>Le serveur a retourné : {{ status_code }} {{ status_text }}<h3>
+                  <p>Envoyez-nous un email et faites-nous savoir
+      ce que vous faisiez lorsque cette erreur s'est produite. Nous allons la réparer le plus tôt possible.
+                </p>
+            </div>
+        </div>
+{% endblock %}
