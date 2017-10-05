@@ -1,7 +1,15 @@
 a_studio_core_homepage:
-    path:     /
-    defaults: { _controller: AStudioCoreBundle:Core:index }
-    
+    path:     /{_locale}
+    defaults: 
+        _controller: AStudioCoreBundle:Core:index
+        _locale: fr
+    requirements:
+        _locale: fr|en
+
 a_studio_core_contact:
-    path:    /contact
-    defaults: { _controller: AStudioCoreBundle:Core:contact }
+    path:    /{_locale}/contact
+    defaults: 
+        _controller: AStudioCoreBundle:Core:contact
+        _locale: fr
+    requirements:
+        -locale: fr|en

@@ -1,13 +1,12 @@
 a_studio_core:
     resource: "@AStudioCoreBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}
-    requirements:
-        _locale: en|fr
+    prefix:   /
+
 
 a_studio_booking:
     resource: "@AStudioBookingBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/order
     requirements:
-        _locale: en|fr
+        _locale: fr|en
 
 
