@@ -35,7 +35,8 @@
         "stripe/stripe-php": "5.*",
         "symfony/assetic-bundle": "~2.8.2",
         "leafo/scssphp": "~0.6",
-        "patchwork/jsqueeze": "~1.0"
+        "patchwork/jsqueeze": "~1.0",
+        "phpunit/phpunit": "5.7.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
