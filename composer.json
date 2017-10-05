@@ -32,7 +32,10 @@
         "symfony/symfony": "3.3.*",
         "twig/twig": "^1.0||^2.0",
         "doctrine/doctrine-fixtures-bundle": "~2.3",
-        "stripe/stripe-php": "5.*"
+        "stripe/stripe-php": "5.*",
+        "symfony/assetic-bundle": "~2.8.2",
+        "leafo/scssphp": "~0.6",
+        "patchwork/jsqueeze": "~1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

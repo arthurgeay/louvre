@@ -9,15 +9,12 @@
     <link rel="icon" href="{{ asset('img/louvre-fav.png') }}">
 
     <title>{% block title %} {{ 'Musée du Louvre'|trans }} {% endblock %}</title>
-      
     {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <link href="{{ asset('css/now-ui-kit.css')}}" rel="stylesheet" />
-    
-    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+            {% stylesheets 'css/*' %}
+                <link rel="stylesheet" href="{{ asset_url }}">
+            {% endstylesheets %}
     {% endblock %}
   </head>
 
@@ -51,13 +48,19 @@
                     </li>
                     {% block language %}
                     <li class="nav-item dropdown">
-                        <a href="#pablo" class="dropdown-toggle nav-link" data-toggle="dropdown" id="navbarDropdownMenuLink1">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" id="navbarDropdownMenuLink1">
                         {{ 'Langue'|trans }}
                         </a>
                         {# On récupère la route actuelle et ses paramètres #}
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"><img src="{{ asset('img/FR.png') }}"> Français</a>
-                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"><img src="{{ asset('img/GB.png') }}"> English</a>
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                                {% image 'img/FR.png' %}
+                                    <img src="{{ asset_url }}"> Français</a>
+                                {% endimage %}
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
+                                {% image 'img/GB.png' %}
+                                <img src="{{ asset_url }}"> English</a>
+                                {% endimage %}
                             <div class="dropdown-divider"></div>
                         </ul>
                     </li>
@@ -107,15 +110,15 @@
     {% block javascripts %}
       
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-      
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
-    <script src="{{ asset('js/now-ui-kit.js') }}"></script>
-        
     <script src="https://use.fontawesome.com/32cf0ee9ba.js"></script>
-      
     {% endblock %}
+
+    {% javascripts  'js/popper.min.js'
+                    'js/bootstrap.min.js'
+                    'js/now-ui-kit.js'
+                     %}
+        <script src="{{ asset_url }}"></script>
+      {% endjavascripts %}
   </body>
 </html>

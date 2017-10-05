@@ -1,10 +1,14 @@
 {% extends "AStudioBookingBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+    {% stylesheets 'datetimepicker/jquery.datetimepicker.css' %}
+      <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
+
 {% block order_body %}
-  
-  {% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('datetimepicker/jquery.datetimepicker.css') }}">
-  {% endblock %}
   <div class="page-header page-header-small clear-filter" filter-color="orange">
     <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('img/louvre-facade.jpeg') }}');">
     </div>
@@ -125,8 +129,11 @@
       </div>
     </div>
   {% endblock %}
+
   {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
-    <script src="{{ asset('js/datepicker.js')}}"></script>
+    {% javascripts 'datetimepicker/build/jquery.datetimepicker.full.min.js'
+                   'js/datepicker.js' %}
+      <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
   {% endblock %}

@@ -69,3 +69,15 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+
+assetic:
+    debug: '%kernel.debug%'
+    use_controller: 
+        enabled: '%kernel.debug%'
+        profiler: false
+    filters:
+        cssrewrite: ~
+        jsqueeze: ~
+        scssphp: 
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
