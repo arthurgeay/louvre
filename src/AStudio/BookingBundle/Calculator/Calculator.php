@@ -4,10 +4,8 @@ namespace AStudio\BookingBundle\Calculator;
 
 class Calculator
 {
-	public function prices($session)
+	public function prices($tickets, $type)
 	{
-		$tickets = $session->get('tickets');
-        $type = $session->get('typeTicket');
 
         $dateAct = new \Datetime(); // On créer une date actuelle 
         $year = $dateAct->format('Y');

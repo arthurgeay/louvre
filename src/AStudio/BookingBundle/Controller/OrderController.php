@@ -87,9 +87,10 @@ class OrderController extends Controller
 
 
         $tickets = $session->get('tickets');
+        $type = $session->get('typeTicket');
 
         $calculator = $this->container->get('a_studio_booking.calculator'); // Appel du service de calcul
-        $prices = $calculator->prices($session); // Prix par billet
+        $prices = $calculator->prices($tickets, $type); // Prix par billet
         $total = $calculator->total($prices); // Calcul du total des billets
 
 

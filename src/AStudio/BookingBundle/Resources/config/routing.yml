@@ -1,15 +1,19 @@
 a_studio_booking_homepage:
     path:     /
     defaults: { _controller: AStudioBookingBundle:Order:index }
+    schemes: [https]
 
 a_studio_booking_informations:
     path:    /informations
     defaults: {_controller: AStudioBookingBundle:Order:infos}
+    schemes: [https]
 
 a_studio_booking_summary:
     path: /summary
     defaults: {_controller: AStudioBookingBundle:Order:summary }
+    schemes: [https]
 
 a_studio_booking_confirm:
     path: /confirm
     defaults: {_controller: AStudioBookingBundle:Order:confirm }
+    schemes: [https]
