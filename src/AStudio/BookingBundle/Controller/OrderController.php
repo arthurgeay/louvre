@@ -135,8 +135,11 @@ class OrderController extends Controller
                 $em->persist($order); 
                 $em->flush(); // On enregistre la commande et les billets en BDD
 
+                $name = $session->get('nameOrder');
+                $dateVisit = $session->get('date');
+                $mailOrder = $session->get('mailOrder');
 
-                $this->get('a_studio_core.email')->sendTicket($session, $tickets, $total); // Service d'envoi du ticket par mail
+                $this->get('a_studio_core.email')->sendTicket($name, $dateVisit, $mailOrder, $tickets, $total); // Service d'envoi du ticket par mail
                  
                 
                 $session->set('total', $total); // Enregistrement en session
