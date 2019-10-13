@@ -15,5 +15,7 @@ security:
 
         main:
             anonymous: ~
+            logout_on_user_change: true
+
     access_control:
         - { path: ^/order, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
