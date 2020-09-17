@@ -8,7 +8,7 @@ Le projet comporte plusieurs pages :
 - **Réserver** (Processus de réservation et paiement en ligne)
 - **Contact** (Contacter les administrateurs)
 
-L'utilisateur à la possibilité de choisir la langue :
+L'utilisateur à la possibilité de choisir la langue du site :
 - 🇫🇷 **Français** (Par défaut)
 - 🇬🇧 **Anglais**
 
